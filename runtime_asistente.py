@@ -1,5 +1,7 @@
 import json
 import os
+import re
+import unicodedata
 
 from motor_contexto import (
     crear_contexto,
@@ -15,7 +17,12 @@ from adaptador_ia import (
 )
 
 from motor_cerebro import (
-    procesar_mensaje
+    procesar_mensaje,
+    construir_indice_intenciones,
+    construir_indice_funciones,
+    construir_indice_acciones,
+    construir_indice_herramientas,
+    construir_indice_operaciones,
 )
 
 
@@ -120,6 +127,15 @@ def preparar_cerebro(
         "CARGADO"
     )
 
+    # Los cerebros guardados en JSON no serializan los índices auxiliares.
+    # Se reconstruyen al cargarlos para que las relaciones del asistente se
+    # resuelvan igual que durante el ensamblado.
+    cerebro = construir_indice_intenciones(cerebro)
+    cerebro = construir_indice_funciones(cerebro)
+    cerebro = construir_indice_acciones(cerebro)
+    cerebro = construir_indice_herramientas(cerebro)
+    cerebro = construir_indice_operaciones(cerebro)
+
     return cerebro
 
 
@@ -171,6 +187,47 @@ def extraer_datos_configuracion(
             datos["empresa_rubro"] = rubro
 
     return datos
+
+
+def normalizar_texto_catalogo(texto):
+    """Normaliza texto para reconocer productos sin depender de acentos."""
+    texto = unicodedata.normalize("NFD", str(texto or "").lower())
+    texto = "".join(
+        caracter
+        for caracter in texto
+        if unicodedata.category(caracter) != "Mn"
+    )
+    return re.sub(r"\s+", " ", texto).strip()
+
+
+def extraer_producto_del_catalogo(mensaje, configuracion):
+    """Relaciona una mención del catálogo con el requisito ``producto``.
+
+    Las categorías y nombres provienen de la configuración del asistente,
+    por lo que no fija productos de un negocio concreto en el motor.
+    """
+    texto = normalizar_texto_catalogo(mensaje)
+    catalogo = configuracion.get("conocimiento", {}).get("catalogo", [])
+
+    for item in catalogo:
+        nombre = str(item.get("nombre", "")).strip()
+        categoria = str(item.get("categoria", "")).strip()
+
+        if not nombre:
+            continue
+
+        candidatos = [nombre, categoria]
+
+        # "Remeras" y "remera", por ejemplo, refieren al mismo ítem.
+        if categoria.lower().endswith("s"):
+            candidatos.append(categoria[:-1])
+
+        for candidato in candidatos:
+            termino = normalizar_texto_catalogo(candidato)
+            if len(termino) >= 3 and termino in texto:
+                return {"producto": nombre}
+
+    return {}
 
 
 # =========================================================
@@ -514,6 +571,8 @@ def ejecutar_asistente(
             }
         }
 
+    cerebro_data = preparar_cerebro(cerebro_data)
+
     contexto = preparar_contexto(
         contexto
     )
@@ -528,6 +587,18 @@ def ejecutar_asistente(
         contexto,
         datos_configuracion
     )
+
+    # Si la persona ya nombró un producto del catálogo, no volver a pedirle
+    # ese mismo dato. Los datos explícitos cargados por otros flujos conservan
+    # prioridad porque esta actualización solo completa ``producto``.
+    if not contexto.get("datos", {}).get("producto"):
+        actualizar_contexto_desde_datos(
+            contexto,
+            extraer_producto_del_catalogo(
+                mensaje,
+                configuracion_data,
+            ),
+        )
 
     resultado_cerebro = procesar_mensaje(
         cerebro_data,

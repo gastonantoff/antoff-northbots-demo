@@ -789,7 +789,7 @@ def procesar_mensaje(
     control = crear_control(cerebro)
     autorizacion = autorizar_ejecucion(control, herramienta)
 
-    if not autorizacion.get("autorizada", False):
+    if not autorizacion.get("autorizado", False):
         actualizar_estado(contexto, "EJECUCION_BLOQUEADA")
         return {"estado": "EJECUCION_BLOQUEADA", "exito": False, "contexto": contexto, "intencion": intencion, "resolucion": resultado_resolucion, "decision": decision, "funcion": funcion, "accion": accion, "herramienta": herramienta, "orquestacion": orquestacion, "autonomia": {"autorizacion": autorizacion}}
 

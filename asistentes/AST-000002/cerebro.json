@@ -253,6 +253,7 @@
             "descripcion": "Consulta sobre una prenda, precio, color, talle o disponibilidad.",
             "categoria": "CATALOGO",
             "prioridad": 100,
+            "funcion_id": 3,
             "requiere_contexto": 1,
             "permite_derivacion": 1,
             "activa": 1,
@@ -683,6 +684,7 @@
         },
         {
             "id": 2,
+            "funcion_id": 3,
             "nombre": "Consultar catálogo",
             "operacion": "CONSULTAR_CATALOGO",
             "descripcion": "Busca producto, precio, variantes y stock ficticio.",
@@ -724,6 +726,8 @@
             "descripcion": "Consulta de productos ficticios, precios, variantes y stock de prueba.",
             "configuracion": "{\"modo\": \"FICTICIO_LOGICO\", \"requiere_revision_humana\": false}",
             "activo": 1,
+            "permite_ejecucion_autonoma": true,
+            "requiere_confirmacion": false,
             "acciones": [
                 {
                     "id": 2,
