@@ -512,7 +512,10 @@ def generar_respuesta_con_ia(
             ),
             configuracion,
         )
-    except ProveedorIANoDisponible:
+    except ProveedorIANoDisponible as error:
+        # El detalle queda solo en el registro del servidor. No incluye la
+        # clave de API y permite diagnosticar un proveedor mal configurado.
+        print(f"[IA] Respuesta de nube no disponible: {error}")
         return respuesta_segura
 
 # =========================================================
