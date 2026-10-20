@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Asistente Generado</title>
+</head>
+
+<body>
+
+<h1>🤖 Asistente Generado</h1>
+
+<p>
+    <b>Proyecto:</b> {{ proyecto[1] }}
+</p>
+
+<hr>
+
+{% if asistente %}
+
+<h2>{{ asistente[2] }}</h2>
+
+<p>
+    <b>Estado:</b> {{ asistente[5] }}
+</p>
+
+<p>
+    <b>Fecha de generación:</b> {{ asistente[6] }}
+</p>
+
+<p>
+    <b>Última actualización:</b> {{ asistente[7] }}
+</p>
+
+<hr>
+
+<h3>Instrucciones</h3>
+
+<pre>{{ asistente[3] }}</pre>
+
+<hr>
+
+<h3>Configuración generada</h3>
+
+<pre>{{ asistente[4] }}</pre>
+
+{% else %}
+
+<p>
+    Todavía no existe un asistente generado para este proyecto.
+</p>
+
+{% endif %}
+
+<hr>
+
+<form
+    method="post"
+    action="/proyectos/{{ proyecto[0] }}/asistente/generar"
+>
+
+<button type="submit">
+    Generar / Regenerar Asistente
+</button>
+
+</form>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+{
+    "asistente": {
+        "asistente_id": "AST-000001",
+        "proyecto_id": 1,
+        "nombre": "taller",
+        "cliente": "uno",
+        "estado": "Nuevo",
+        "id": "AST-000001"
+    },
+    "empresa": {
+        "id": 1,
+        "proyecto_id": 1,
+        "nombre": "caucho",
+        "rubro": "mecanico",
+        "whatsapp": null,
+        "direccion": null,
+        "horario": null,
+        "sitio_web": null,
+        "observaciones": "En desarrollo"
+    },
+    "conocimiento": {
+        "catalogo": [
+            {
+                "id": 2,
+                "tipo": "Producto",
+                "categoria": "repuesto",
+                "nombre": "pacara",
+                "descripcion": "dfgh",
+                "precio": 600.0,
+                "observaciones": "frg"
+            },
+            {
+                "id": 1,
+                "tipo": "Producto",
+                "categoria": "repuesto",
+                "nombre": "filtro",
+                "descripcion": "filtro aire",
+                "precio": 3000.0,
+                "observaciones": "recambio"
+            }
+        ],
+        "conocimiento_general": [
+            {
+                "id": 2,
+                "categoria": "Preguntas Frecuentes",
+                "titulo": "tata",
+                "contenido": "vemos",
+                "observaciones": ""
+            },
+            {
+                "id": 1,
+                "categoria": "Información Institucional",
+                "titulo": "nose",
+                "contenido": "prueba",
+                "observaciones": ""
+            }
+        ]
+    },
+    "canales": [
+        "instagram",
+        "facebook_messenger"
+    ],
+    "configuracion_ia": {
+        "id": 1,
+        "proyecto_id": 1,
+        "modelo": "gpt-4o-mini",
+        "razonamiento": "estructurado",
+        "creatividad": "media",
+        "longitud": "breve",
+        "iniciativa": "moderada",
+        "autonomia": "supervisada",
+        "prioridad": "consultas de catálogo",
+        "memoria": "contexto de sesión"
+    },
+    "version": "1.0"
+}

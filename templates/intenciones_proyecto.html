@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Intenciones del Proyecto</title>
+</head>
+
+<body>
+
+    <h1>🎯 Intenciones del Proyecto</h1>
+
+    <p>
+        <strong>Proyecto:</strong>
+        {{ proyecto[1] }}
+    </p>
+
+    <hr>
+
+
+    <h2>🎯 Intenciones asignadas</h2>
+
+
+    {% if intenciones_proyecto %}
+
+        {% for intencion in intenciones_proyecto %}
+
+            <hr>
+
+            <h3>
+                {{ intencion[3] }}
+            </h3>
+
+
+            <p>
+                <strong>Código:</strong>
+                {{ intencion[4] }}
+            </p>
+
+
+            <p>
+                <strong>Categoría:</strong>
+                {{ intencion[6] or "Sin categoría" }}
+            </p>
+
+
+            <p>
+                <strong>Descripción:</strong>
+                {{ intencion[5] or "Sin descripción" }}
+            </p>
+
+
+            <p>
+                <strong>Prioridad del proyecto:</strong>
+                {{ intencion[7] }}
+            </p>
+
+
+            <p>
+                <strong>Requiere contexto:</strong>
+
+                {% if intencion[8] == 1 %}
+                    Sí
+                {% else %}
+                    No
+                {% endif %}
+            </p>
+
+
+            <p>
+                <strong>Permite derivación humana:</strong>
+
+                {% if intencion[9] == 1 %}
+                    Sí
+                {% else %}
+                    No
+                {% endif %}
+            </p>
+
+
+            <p>
+                <strong>Estado:</strong>
+
+                {% if intencion[10] == 1 %}
+                    🟢 Activa
+                {% else %}
+                    🔴 Inactiva
+                {% endif %}
+            </p>
+
+
+            <!-- CAMBIAR ESTADO -->
+
+            <form
+                method="post"
+                action="/proyectos/{{ proyecto[0] }}/intenciones/{{ intencion[2] }}/estado"
+            >
+
+                {% if intencion[10] == 1 %}
+
+                    <input
+                        type="hidden"
+                        name="activa"
+                        value="0"
+                    >
+
+                    <button type="submit">
+                        🔴 Desactivar intención
+                    </button>
+
+                {% else %}
+
+                    <input
+                        type="hidden"
+                        name="activa"
+                        value="1"
+                    >
+
+                    <button type="submit">
+                        🟢 Activar intención
+                    </button>
+
+                {% endif %}
+
+            </form>
+
+
+            <br>
+
+
+            <!-- CAMBIAR PRIORIDAD -->
+
+            <form
+                method="post"
+                action="/proyectos/{{ proyecto[0] }}/intenciones/{{ intencion[2] }}/prioridad"
+            >
+
+                <label>
+                    Nueva prioridad:
+                </label>
+
+                <input
+                    type="number"
+                    name="prioridad"
+                    value="{{ intencion[7] }}"
+                >
+
+                <button type="submit">
+                    💾 Guardar prioridad
+                </button>
+
+            </form>
+
+
+            <br>
+
+
+            <!-- QUITAR DEL PROYECTO -->
+
+            <form
+                method="post"
+                action="/proyectos/{{ proyecto[0] }}/intenciones/{{ intencion[2] }}/quitar"
+            >
+
+                <button type="submit">
+                    🗑️ Quitar del proyecto
+                </button>
+
+            </form>
+
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            Este proyecto todavía no tiene intenciones asignadas.
+        </p>
+
+    {% endif %}
+
+
+    <hr>
+
+
+    <h2>➕ Intenciones disponibles para agregar</h2>
+
+
+    {% if intenciones_disponibles %}
+
+        {% for intencion in intenciones_disponibles %}
+
+            <hr>
+
+            <h3>
+                {{ intencion[1] }}
+            </h3>
+
+
+            <p>
+                <strong>Código:</strong>
+                {{ intencion[2] }}
+            </p>
+
+
+            <p>
+                <strong>Categoría:</strong>
+                {{ intencion[4] or "Sin categoría" }}
+            </p>
+
+
+            <p>
+                <strong>Descripción:</strong>
+                {{ intencion[3] or "Sin descripción" }}
+            </p>
+
+
+            <p>
+                <strong>Prioridad general:</strong>
+                {{ intencion[5] }}
+            </p>
+
+
+            <form
+                method="post"
+                action="/proyectos/{{ proyecto[0] }}/intenciones/{{ intencion[0] }}/agregar"
+            >
+
+                <button type="submit">
+                    ➕ Agregar al proyecto
+                </button>
+
+            </form>
+
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            No hay más intenciones disponibles para agregar.
+        </p>
+
+    {% endif %}
+
+
+    <hr>
+
+
+    <p>
+        <a href="/proyectos/{{ proyecto[0] }}">
+            ⬅️ Volver al proyecto
+        </a>
+    </p>
+
+</body>
+
+</html>

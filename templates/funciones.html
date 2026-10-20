@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca de Funciones</title>
+</head>
+
+<body>
+
+<h1>🧩 Biblioteca de Funciones</h1>
+
+<p>
+    Funciones reutilizables disponibles para fabricar asistentes.
+</p>
+
+<hr>
+
+<h3>Funciones disponibles</h3>
+
+{% if funciones %}
+
+{% for funcion in funciones %}
+
+<hr>
+
+<h4>{{ funcion[1] }}</h4>
+
+<form
+    method="post"
+    action="/funciones/{{ funcion[0] }}/actualizar"
+>
+
+<p>
+
+<label>
+    Nombre:
+</label>
+
+<br>
+
+<input
+    type="text"
+    name="nombre"
+    value="{{ funcion[1] }}"
+    required
+>
+
+</p>
+
+<p>
+
+<label>
+    Categoría:
+</label>
+
+<br>
+
+<input
+    type="text"
+    name="categoria"
+    value="{{ funcion[2] }}"
+    required
+>
+
+</p>
+
+<p>
+
+<label>
+    Descripción:
+</label>
+
+<br>
+
+<textarea
+    name="descripcion"
+    rows="3"
+    cols="60"
+>{{ funcion[3] or '' }}</textarea>
+
+</p>
+
+<p>
+
+<label>
+    Objetivo:
+</label>
+
+<br>
+
+<textarea
+    name="objetivo"
+    rows="3"
+    cols="60"
+>{{ funcion[4] or '' }}</textarea>
+
+</p>
+
+<p>
+
+<label>
+    Estrategia de resolución:
+</label>
+
+<br>
+
+<textarea
+    name="estrategia_resolucion"
+    rows="6"
+    cols="60"
+>{{ funcion[5] or '' }}</textarea>
+
+</p>
+
+<p>
+
+<label>
+    Derivación humana:
+</label>
+
+<br>
+
+<select name="derivacion_humana">
+
+    <option
+        value="1"
+        {% if funcion[6] == 1 %}selected{% endif %}
+    >
+        Permitida
+    </option>
+
+    <option
+        value="0"
+        {% if funcion[6] == 0 %}selected{% endif %}
+    >
+        No permitida
+    </option>
+
+</select>
+
+</p>
+
+<input
+    type="hidden"
+    name="activa"
+    value="{{ funcion[7] }}"
+>
+
+<button type="submit">
+    Guardar cambios
+</button>
+
+</form>
+
+<br>
+
+<form
+    method="post"
+    action="/funciones/{{ funcion[0] }}/estado"
+>
+
+{% if funcion[7] == 1 %}
+
+<input
+    type="hidden"
+    name="activa"
+    value="0"
+>
+
+<button type="submit">
+    Desactivar función
+</button>
+
+<p>
+    <b>Estado:</b> Activa
+</p>
+
+{% else %}
+
+<input
+    type="hidden"
+    name="activa"
+    value="1"
+>
+
+<button type="submit">
+    Activar función
+</button>
+
+<p>
+    <b>Estado:</b> Inactiva
+</p>
+
+{% endif %}
+
+</form>
+
+{% endfor %}
+
+{% else %}
+
+<p>
+    Todavía no hay funciones en la biblioteca.
+</p>
+
+{% endif %}
+
+<hr>
+
+<h3>Agregar nueva función</h3>
+
+<form
+    method="post"
+    action="/funciones/guardar"
+>
+
+<p>
+
+<label>
+    Nombre:
+</label>
+
+<br>
+
+<input
+    type="text"
+    name="nombre"
+    required
+>
+
+</p>
+
+<p>
+
+<label>
+    Categoría:
+</label>
+
+<br>
+
+<input
+    type="text"
+    name="categoria"
+    placeholder="Ventas, atención, reservas..."
+    required
+>
+
+</p>
+
+<p>
+
+<label>
+    Descripción:
+</label>
+
+<br>
+
+<textarea
+    name="descripcion"
+    rows="3"
+    cols="60"
+></textarea>
+
+</p>
+
+<p>
+
+<label>
+    Objetivo:
+</label>
+
+<br>
+
+<textarea
+    name="objetivo"
+    rows="3"
+    cols="60"
+></textarea>
+
+</p>
+
+<p>
+
+<label>
+    Estrategia de resolución:
+</label>
+
+<br>
+
+<textarea
+    name="estrategia_resolucion"
+    rows="6"
+    cols="60"
+    placeholder="Intentar resolver automáticamente, pedir información faltante, utilizar herramientas disponibles y derivar a humano solamente si no puede completar la tarea."
+></textarea>
+
+</p>
+
+<p>
+
+<label>
+    Derivación humana:
+</label>
+
+<br>
+
+<select name="derivacion_humana">
+
+    <option value="1">
+        Permitida
+    </option>
+
+    <option value="0">
+        No permitida
+    </option>
+
+</select>
+
+</p>
+
+<button type="submit">
+    Guardar función
+</button>
+
+</form>
+
+</body>
+
+</html>

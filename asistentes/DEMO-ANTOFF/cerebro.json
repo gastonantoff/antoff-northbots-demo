@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "estado": "DEMO_LOCAL",
+  "intenciones": [],
+  "requisitos": [],
+  "capacidades": [
+    "informacion_general",
+    "orientacion_inicial",
+    "captura_de_consultas"
+  ],
+  "funciones": [],
+  "herramientas": [],
+  "acciones": [],
+  "flujos": [],
+  "configuracion": {
+    "max_pasos": 1,
+    "autonomia": "supervisada"
+  }
+}

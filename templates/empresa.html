@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Empresa</title>
+</head>
+
+<body>
+
+    <h1>🏢 Empresa</h1>
+
+    <h2>{{ proyecto[1] }}</h2>
+
+    <p>Este módulo almacenará toda la información de la empresa asociada a este proyecto.</p>
+
+    <hr>
+
+    <p><strong>Cliente:</strong> {{ proyecto[2] }}</p>
+    <p><strong>Empresa:</strong> {{ proyecto[3] }}</p>
+    <p><strong>Rubro:</strong> {{ proyecto[4] }}</p>
+
+    <hr>
+
+    <p>
+        <a href="/proyectos/{{ proyecto[0] }}">
+            ← Volver al proyecto
+        </a>
+    </p>
+
+</body>
+
+</html>

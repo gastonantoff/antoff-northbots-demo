@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Estación Personalidad</title>
+</head>
+
+<body>
+
+<h1>🎭 Estación Personalidad</h1>
+
+<p>
+<b>Proyecto:</b> {{ proyecto[1] }}
+</p>
+
+<hr>
+
+<form
+method="post"
+action="/proyectos/{{ proyecto[0] }}/personalidad/guardar">
+
+<p>
+
+Nombre del asistente
+
+<br>
+
+<input
+type="text"
+name="nombre"
+value="{{ personalidad[2] if personalidad else '' }}"
+style="width:500px;">
+
+</p>
+
+<p>
+
+Rol del asistente
+
+<br>
+
+<input
+type="text"
+name="rol"
+value="{{ personalidad[3] if personalidad else '' }}"
+style="width:500px;">
+
+</p>
+
+<p>
+
+Objetivo principal
+
+<br>
+
+<textarea
+name="objetivo"
+rows="5"
+cols="80">{{ personalidad[4] if personalidad else '' }}</textarea>
+
+</p>
+
+<p>
+
+Comunicación
+
+<br>
+
+<textarea
+name="comunicacion"
+rows="5"
+cols="80">{{ personalidad[5] if personalidad else '' }}</textarea>
+
+</p>
+
+<p>
+
+Nivel de iniciativa
+
+<br>
+
+<select name="iniciativa">
+
+<option value="Baja"
+{% if personalidad and personalidad[6]=="Baja" %}selected{% endif %}>
+Baja
+</option>
+
+<option value="Media"
+{% if personalidad and personalidad[6]=="Media" %}selected{% endif %}>
+Media
+</option>
+
+<option value="Alta"
+{% if personalidad and personalidad[6]=="Alta" %}selected{% endif %}>
+Alta
+</option>
+
+</select>
+
+</p>
+
+<p>
+
+Longitud de las respuestas
+
+<br>
+
+<select name="longitud_respuestas">
+
+<option value="Cortas"
+{% if personalidad and personalidad[7]=="Cortas" %}selected{% endif %}>
+Cortas
+</option>
+
+<option value="Medias"
+{% if personalidad and personalidad[7]=="Medias" %}selected{% endif %}>
+Medias
+</option>
+
+<option value="Largas"
+{% if personalidad and personalidad[7]=="Largas" %}selected{% endif %}>
+Largas
+</option>
+
+</select>
+
+</p>
+
+<p>
+
+Uso de emojis
+
+<br>
+
+<select name="emojis">
+
+<option value="No"
+{% if personalidad and personalidad[8]=="No" %}selected{% endif %}>
+No
+</option>
+
+<option value="Sí"
+{% if personalidad and personalidad[8]=="Sí" %}selected{% endif %}>
+Sí
+</option>
+
+</select>
+
+</p>
+
+<p>
+
+Restricciones
+
+<br>
+
+<textarea
+name="restricciones"
+rows="5"
+cols="80">{{ personalidad[9] if personalidad else '' }}</textarea>
+
+</p>
+
+<p>
+
+Mensaje de despedida
+
+<br>
+
+<textarea
+name="despedida"
+rows="3"
+cols="80">{{ personalidad[10] if personalidad else '' }}</textarea>
+
+</p>
+
+<br>
+
+<button type="submit">
+
+💾 Guardar Personalidad
+
+</button>
+
+</form>
+
+</body>
+
+</html>

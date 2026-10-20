@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Fábrica de Asistentes</title>
+</head>
+<body>
+
+    <h1>Fábrica de Asistentes</h1>
+
+    <hr>
+
+    <a href="/proyectos/nuevo">
+        ➕ Nuevo Proyecto
+    </a>
+
+    <hr>
+
+    {% if proyectos %}
+
+        {% for proyecto in proyectos %}
+
+            <h2>
+    <a href="/proyectos/{{ proyecto[0] }}">
+        {{ proyecto[1] }}
+    </a>
+</h2>
+            <p><strong>Cliente:</strong> {{ proyecto[2] }}</p>
+
+            <p><strong>Empresa:</strong> {{ proyecto[3] }}</p>
+
+            <p><strong>Rubro:</strong> {{ proyecto[4] }}</p>
+
+            <p><strong>Estado:</strong> {{ proyecto[5] }}</p>
+
+            <hr>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No hay proyectos registrados.</p>
+
+    {% endif %}
+
+</body>
+</html>

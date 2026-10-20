@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Herramientas del proyecto</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitulo {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .seccion {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .formulario {
+            display: grid;
+            gap: 15px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .boton-guardar {
+            background: #222;
+            color: white;
+        }
+
+        .herramienta {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .herramienta-inactiva {
+            opacity: 0.55;
+        }
+
+        .herramienta-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .herramienta h3 {
+            margin: 0;
+        }
+
+        .tipo {
+            color: #777;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .descripcion {
+            margin-top: 15px;
+            color: #444;
+        }
+
+        .estado {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .activo {
+            color: green;
+        }
+
+        .inactivo {
+            color: #b00020;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .boton-activar {
+            background: #198754;
+            color: white;
+        }
+
+        .boton-desactivar {
+            background: #d97706;
+            color: white;
+        }
+
+        .boton-eliminar {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .vacio {
+            color: #777;
+            padding: 20px 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <a
+        class="volver"
+        href="/proyectos"
+    >
+        ← Volver a proyectos
+    </a>
+
+    <h1>
+        Herramientas del proyecto
+    </h1>
+
+    <div class="subtitulo">
+        {{ proyecto[1] }}
+    </div>
+
+
+    <div class="seccion">
+
+        <h2>
+            Agregar herramienta
+        </h2>
+
+        <form
+            class="formulario"
+            method="post"
+            action="/proyectos/{{ proyecto[0] }}/herramientas/guardar"
+        >
+
+            <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre de la herramienta"
+                required
+            >
+
+            <select
+                name="tipo"
+                required
+            >
+
+                <option value="">
+                    Seleccionar tipo
+                </option>
+
+                <option value="catalogo">
+                    Catálogo
+                </option>
+
+                <option value="horarios">
+                    Horarios
+                </option>
+
+                <option value="pedidos">
+                    Pedidos
+                </option>
+
+                <option value="reservas">
+                    Reservas
+                </option>
+
+                <option value="calendario">
+                    Calendario
+                </option>
+
+                <option value="crm">
+                    CRM
+                </option>
+
+                <option value="base_conocimiento">
+                    Base de conocimiento
+                </option>
+
+                <option value="api">
+                    API externa
+                </option>
+
+                <option value="otra">
+                    Otra
+                </option>
+
+            </select>
+
+            <textarea
+                name="descripcion"
+                placeholder="Descripción de la herramienta"
+            ></textarea>
+
+            <textarea
+                name="configuracion"
+                placeholder="Configuración adicional (opcional)"
+            ></textarea>
+
+            <button
+                type="submit"
+                class="boton-guardar"
+            >
+                Agregar herramienta
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="seccion">
+
+        <h2>
+            Herramientas configuradas
+        </h2>
+
+        {% if herramientas %}
+
+            {% for herramienta in herramientas %}
+
+                <div
+                    class="herramienta {% if not herramienta[5] %}herramienta-inactiva{% endif %}"
+                >
+
+                    <div class="herramienta-header">
+
+                        <div>
+
+                            <h3>
+                                {{ herramienta[1] }}
+                            </h3>
+
+                            <div class="tipo">
+                                Tipo: {{ herramienta[2] }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    {% if herramienta[3] %}
+
+                        <div class="descripcion">
+
+                            {{ herramienta[3] }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="estado">
+
+                        {% if herramienta[5] %}
+
+                            <span class="activo">
+                                ● Activa
+                            </span>
+
+                        {% else %}
+
+                            <span class="inactivo">
+                                ● Desactivada
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="acciones">
+
+                        
+                            <a
+        href="/herramientas/{{ herramienta[0] }}/acciones"
+        style="
+            padding: 10px 16px;
+            background: #2563eb;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+        "
+    >
+        Administrar acciones
+    </a>
+
+                        <form
+                            method="post"
+                            action="/herramientas/{{ herramienta[0] }}/estado"
+                        >
+
+                            <input
+                                type="hidden"
+                                name="activa"
+                                value="{% if herramienta[5] %}0{% else %}1{% endif %}"
+                            >
+
+                            {% if herramienta[5] %}
+
+                                <button
+                                    class="boton-desactivar"
+                                    type="submit"
+                                >
+                                    Desactivar
+                                </button>
+
+                            {% else %}
+
+                                <button
+                                    class="boton-activar"
+                                    type="submit"
+                                >
+                                    Activar
+                                </button>
+
+                            {% endif %}
+
+                        </form>
+
+
+                        <form
+                            method="post"
+                            action="/herramientas/{{ herramienta[0] }}/eliminar"
+                            onsubmit="return confirm('¿Eliminar esta herramienta?');"
+                        >
+
+                            <button
+                                class="boton-eliminar"
+                                type="submit"
+                            >
+                                Eliminar
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="vacio">
+
+                Todavía no hay herramientas configuradas para este proyecto.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

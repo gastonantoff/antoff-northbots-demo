@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Estación Canales</title>
+</head>
+
+<body>
+
+<h1>📡 Estación Canales</h1>
+
+<p>
+    <b>Proyecto:</b> {{ proyecto[1] }}
+</p>
+
+<hr>
+
+<form
+    method="post"
+    action="/proyectos/{{ proyecto[0] }}/canales/guardar"
+>
+
+<h3>¿Dónde funcionará este asistente?</h3>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="whatsapp"
+        {% if "whatsapp" in canales %}checked{% endif %}
+    >
+    WhatsApp
+</label>
+
+</p>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="web"
+        {% if "web" in canales %}checked{% endif %}
+    >
+    Web Chat
+</label>
+
+</p>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="telegram"
+        {% if "telegram" in canales %}checked{% endif %}
+    >
+    Telegram
+</label>
+
+</p>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="instagram"
+        {% if "instagram" in canales %}checked{% endif %}
+    >
+    Instagram
+</label>
+
+</p>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="facebook_messenger"
+        {% if "facebook_messenger" in canales %}checked{% endif %}
+    >
+    Facebook Messenger
+</label>
+
+</p>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="discord"
+        {% if "discord" in canales %}checked{% endif %}
+    >
+    Discord
+</label>
+
+</p>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="slack"
+        {% if "slack" in canales %}checked{% endif %}
+    >
+    Slack
+</label>
+
+</p>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="teams"
+        {% if "teams" in canales %}checked{% endif %}
+    >
+    Microsoft Teams
+</label>
+
+</p>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="email"
+        {% if "email" in canales %}checked{% endif %}
+    >
+    Email
+</label>
+
+</p>
+
+<p>
+
+<label>
+    <input
+        type="checkbox"
+        name="canal"
+        value="api"
+        {% if "api" in canales %}checked{% endif %}
+    >
+    API REST
+</label>
+
+</p>
+
+<br>
+
+<button type="submit">
+    Guardar Canales
+</button>
+
+</form>
+
+</body>
+
+</html>

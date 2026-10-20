@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Estación Flujos y Reglas</title>
+</head>
+
+<body>
+
+<h1>🔄 Estación Flujos y Reglas</h1>
+
+<p>
+    <b>Proyecto:</b> {{ proyecto[1] }}
+</p>
+
+<hr>
+
+<h3>Flujos configurados</h3>
+
+{% if flujos %}
+
+{% for flujo in flujos %}
+
+<hr>
+
+<h4>{{ flujo[2] }}</h4>
+
+<form
+    method="post"
+    action="/proyectos/{{ proyecto[0] }}/flujos/{{ flujo[0] }}/actualizar"
+>
+
+<p>
+    <label>Nombre:</label>
+    <br>
+    <input
+        type="text"
+        name="nombre"
+        value="{{ flujo[2] }}"
+        required
+    >
+</p>
+
+<p>
+    <label>Descripción:</label>
+    <br>
+    <textarea
+        name="descripcion"
+        rows="3"
+        cols="50"
+    >{{ flujo[3] or '' }}</textarea>
+</p>
+
+<p>
+    <label>Disparador:</label>
+    <br>
+    <input
+        type="text"
+        name="disparador"
+        value="{{ flujo[4] }}"
+        required
+    >
+</p>
+
+<p>
+    <label>Condición:</label>
+    <br>
+    <textarea
+        name="condicion"
+        rows="3"
+        cols="50"
+    >{{ flujo[5] or '' }}</textarea>
+</p>
+
+<p>
+    <label>Acción:</label>
+    <br>
+    <textarea
+        name="accion"
+        rows="3"
+        cols="50"
+        required
+    >{{ flujo[6] }}</textarea>
+</p>
+
+<p>
+    <label>Prioridad:</label>
+    <br>
+    <input
+        type="number"
+        name="prioridad"
+        value="{{ flujo[7] }}"
+    >
+</p>
+
+<button type="submit">
+    Actualizar flujo
+</button>
+
+</form>
+
+<br>
+
+<form
+    method="post"
+    action="/proyectos/{{ proyecto[0] }}/flujos/{{ flujo[0] }}/estado"
+>
+
+{% if flujo[8] == 1 %}
+
+<input
+    type="hidden"
+    name="activo"
+    value="0"
+>
+
+<button type="submit">
+    Desactivar flujo
+</button>
+
+<p>
+    <b>Estado:</b> Activo
+</p>
+
+{% else %}
+
+<input
+    type="hidden"
+    name="activo"
+    value="1"
+>
+
+<button type="submit">
+    Activar flujo
+</button>
+
+<p>
+    <b>Estado:</b> Inactivo
+</p>
+
+{% endif %}
+
+</form>
+
+{% endfor %}
+
+{% else %}
+
+<p>
+    Este proyecto todavía no tiene flujos configurados.
+</p>
+
+{% endif %}
+
+<hr>
+
+<h3>Agregar nuevo flujo</h3>
+
+<form
+    method="post"
+    action="/proyectos/{{ proyecto[0] }}/flujos/guardar"
+>
+
+<p>
+    <label>Nombre:</label>
+    <br>
+    <input
+        type="text"
+        name="nombre"
+        required
+    >
+</p>
+
+<p>
+    <label>Descripción:</label>
+    <br>
+    <textarea
+        name="descripcion"
+        rows="3"
+        cols="50"
+    ></textarea>
+</p>
+
+<p>
+    <label>Disparador:</label>
+    <br>
+    <input
+        type="text"
+        name="disparador"
+        required
+    >
+</p>
+
+<p>
+    <label>Condición:</label>
+    <br>
+    <textarea
+        name="condicion"
+        rows="3"
+        cols="50"
+    ></textarea>
+</p>
+
+<p>
+    <label>Acción:</label>
+    <br>
+    <textarea
+        name="accion"
+        rows="3"
+        cols="50"
+        required
+    ></textarea>
+</p>
+
+<p>
+    <label>Prioridad:</label>
+    <br>
+    <input
+        type="number"
+        name="prioridad"
+        value="0"
+    >
+</p>
+
+<button type="submit">
+    Guardar flujo
+</button>
+
+</form>
+
+</body>
+
+</html>

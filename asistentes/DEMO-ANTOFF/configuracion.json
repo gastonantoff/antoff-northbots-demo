@@ -1,0 +1,53 @@
+{
+  "asistente": {
+    "asistente_id": "DEMO-ANTOFF",
+    "proyecto_id": "demo",
+    "nombre": "ANT0FF Northbots",
+    "cliente": "ANT0FF Northbots",
+    "estado": "DEMO_LOCAL"
+  },
+  "empresa": {
+    "nombre": "ANT0FF Northbots",
+    "rubro": "asistentes digitales para negocios",
+    "whatsapp": null,
+    "direccion": null,
+    "horario": null,
+    "sitio_web": "https://gastonantoff.github.io/antoff-northbots-web/"
+  },
+  "conocimiento": {
+    "catalogo": [
+      {
+        "tipo": "Servicio",
+        "nombre": "Asistente digital para negocios",
+        "descripcion": "Asistente configurado para responder consultas, orientar clientes y ordenar la atención por mensajería."
+      },
+      {
+        "tipo": "Servicio",
+        "nombre": "Automatización de consultas frecuentes",
+        "descripcion": "Configuración de respuestas y flujos para consultas repetidas de un negocio."
+      }
+    ],
+    "conocimiento_general": [
+      {
+        "categoria": "Información institucional",
+        "titulo": "Alcance",
+        "contenido": "ANT0FF Northbots crea asistentes digitales para ayudar a negocios con atención inicial, información frecuente y captura de consultas."
+      },
+      {
+        "categoria": "Contacto",
+        "titulo": "Consulta inicial",
+        "contenido": "Para orientar una propuesta se solicita el rubro, las consultas frecuentes y la tarea que el negocio desea automatizar."
+      }
+    ]
+  },
+  "canales": [
+    "instagram"
+  ],
+  "configuracion_ia": {
+    "proveedor": "ollama_local",
+    "modelo": "qwen3:1.7b",
+    "autonomia": "supervisada",
+    "memoria": "contexto de sesión"
+  },
+  "version": "1.0"
+}

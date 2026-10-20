@@ -1,0 +1,817 @@
+{
+    "version": "1.0",
+    "pipeline": [
+        "DETECTAR_INTENCION",
+        "ACTUALIZAR_CONTEXTO",
+        "EVALUAR_REQUISITOS",
+        "DETERMINAR_DECISION",
+        "SELECCIONAR_FUNCION",
+        "SELECCIONAR_ACCION",
+        "SELECCIONAR_HERRAMIENTA",
+        "ORQUESTAR",
+        "CONTROLAR_AUTONOMIA",
+        "EJECUTAR"
+    ],
+    "intenciones": [
+        {
+            "id": 6,
+            "proyecto_id": 2,
+            "intencion_id": 8,
+            "nombre": "Hablar con persona",
+            "codigo": "LUMEN_DERIVACION_HUMANA",
+            "descripcion": "Solicitud de atención humana, reclamo o excepción.",
+            "categoria": "ATENCION",
+            "prioridad": 120,
+            "requiere_contexto": 0,
+            "permite_derivacion": 1,
+            "activa": 1,
+            "patrones": [
+                {
+                    "id": 29,
+                    "intencion_id": 8,
+                    "patron": "asesor",
+                    "tipo": "FRASE",
+                    "prioridad": 120,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 31,
+                    "intencion_id": 8,
+                    "patron": "cambio",
+                    "tipo": "FRASE",
+                    "prioridad": 120,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 33,
+                    "intencion_id": 8,
+                    "patron": "devolucion",
+                    "tipo": "FRASE",
+                    "prioridad": 120,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 32,
+                    "intencion_id": 8,
+                    "patron": "devolución",
+                    "tipo": "FRASE",
+                    "prioridad": 120,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 28,
+                    "intencion_id": 8,
+                    "patron": "humano",
+                    "tipo": "FRASE",
+                    "prioridad": 120,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 27,
+                    "intencion_id": 8,
+                    "patron": "persona",
+                    "tipo": "FRASE",
+                    "prioridad": 120,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 30,
+                    "intencion_id": 8,
+                    "patron": "reclamo",
+                    "tipo": "FRASE",
+                    "prioridad": 120,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                }
+            ],
+            "requisitos": []
+        },
+        {
+            "id": 5,
+            "proyecto_id": 2,
+            "intencion_id": 7,
+            "nombre": "Iniciar compra",
+            "codigo": "LUMEN_INICIAR_COMPRA",
+            "descripcion": "La persona desea comprar o reservar una prenda.",
+            "categoria": "VENTAS",
+            "prioridad": 110,
+            "requiere_contexto": 1,
+            "permite_derivacion": 1,
+            "activa": 1,
+            "patrones": [
+                {
+                    "id": 26,
+                    "intencion_id": 7,
+                    "patron": "comprar",
+                    "tipo": "FRASE",
+                    "prioridad": 110,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 23,
+                    "intencion_id": 7,
+                    "patron": "lo quiero",
+                    "tipo": "FRASE",
+                    "prioridad": 110,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 24,
+                    "intencion_id": 7,
+                    "patron": "me lo llevo",
+                    "tipo": "FRASE",
+                    "prioridad": 110,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 22,
+                    "intencion_id": 7,
+                    "patron": "quiero comprar",
+                    "tipo": "FRASE",
+                    "prioridad": 110,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 25,
+                    "intencion_id": 7,
+                    "patron": "quiero pedir",
+                    "tipo": "FRASE",
+                    "prioridad": 110,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                }
+            ],
+            "requisitos": [
+                {
+                    "id": 4,
+                    "intencion_id": 7,
+                    "codigo": "producto",
+                    "nombre": "Producto",
+                    "tipo": "texto",
+                    "obligatorio": 1,
+                    "prioridad": 100,
+                    "descripcion": "Producto elegido.",
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 5,
+                    "intencion_id": 7,
+                    "codigo": "variante",
+                    "nombre": "Color y talle",
+                    "tipo": "texto",
+                    "obligatorio": 1,
+                    "prioridad": 90,
+                    "descripcion": "Variante elegida.",
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 6,
+                    "intencion_id": 7,
+                    "codigo": "cantidad",
+                    "nombre": "Cantidad",
+                    "tipo": "numero",
+                    "obligatorio": 1,
+                    "prioridad": 80,
+                    "descripcion": "Cantidad solicitada.",
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 7,
+                    "intencion_id": 7,
+                    "codigo": "nombre",
+                    "nombre": "Nombre",
+                    "tipo": "texto",
+                    "obligatorio": 1,
+                    "prioridad": 70,
+                    "descripcion": "Nombre de la persona.",
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 8,
+                    "intencion_id": 7,
+                    "codigo": "telefono",
+                    "nombre": "Teléfono",
+                    "tipo": "texto",
+                    "obligatorio": 1,
+                    "prioridad": 60,
+                    "descripcion": "Teléfono de contacto.",
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 9,
+                    "intencion_id": 7,
+                    "codigo": "entrega",
+                    "nombre": "Modalidad de entrega",
+                    "tipo": "texto",
+                    "obligatorio": 1,
+                    "prioridad": 50,
+                    "descripcion": "Envío o retiro.",
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "proyecto_id": 2,
+            "intencion_id": 4,
+            "nombre": "Consultar producto",
+            "codigo": "LUMEN_CONSULTAR_PRODUCTO",
+            "descripcion": "Consulta sobre una prenda, precio, color, talle o disponibilidad.",
+            "categoria": "CATALOGO",
+            "prioridad": 100,
+            "requiere_contexto": 1,
+            "permite_derivacion": 1,
+            "activa": 1,
+            "patrones": [
+                {
+                    "id": 10,
+                    "intencion_id": 4,
+                    "patron": "buzo",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 8,
+                    "intencion_id": 4,
+                    "patron": "campera",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 7,
+                    "intencion_id": 4,
+                    "patron": "color",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 3,
+                    "intencion_id": 4,
+                    "patron": "cuánto sale",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 5,
+                    "intencion_id": 4,
+                    "patron": "hay stock",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 11,
+                    "intencion_id": 4,
+                    "patron": "jean",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 2,
+                    "intencion_id": 4,
+                    "patron": "precio",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 9,
+                    "intencion_id": 4,
+                    "patron": "remera",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 6,
+                    "intencion_id": 4,
+                    "patron": "talle",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 4,
+                    "intencion_id": 4,
+                    "patron": "tenés",
+                    "tipo": "FRASE",
+                    "prioridad": 100,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                }
+            ],
+            "requisitos": [
+                {
+                    "id": 2,
+                    "intencion_id": 4,
+                    "codigo": "producto",
+                    "nombre": "Producto consultado",
+                    "tipo": "texto",
+                    "obligatorio": 1,
+                    "prioridad": 100,
+                    "descripcion": "Producto del catálogo que la persona desea consultar.",
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "proyecto_id": 2,
+            "intencion_id": 5,
+            "nombre": "Consultar envío",
+            "codigo": "LUMEN_CONSULTAR_ENVIO",
+            "descripcion": "Consulta sobre envío, retiro, demora o zonas.",
+            "categoria": "LOGISTICA",
+            "prioridad": 80,
+            "requiere_contexto": 1,
+            "permite_derivacion": 1,
+            "activa": 1,
+            "patrones": [
+                {
+                    "id": 16,
+                    "intencion_id": 5,
+                    "patron": "demora",
+                    "tipo": "FRASE",
+                    "prioridad": 80,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 13,
+                    "intencion_id": 5,
+                    "patron": "envio",
+                    "tipo": "FRASE",
+                    "prioridad": 80,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 12,
+                    "intencion_id": 5,
+                    "patron": "envío",
+                    "tipo": "FRASE",
+                    "prioridad": 80,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 17,
+                    "intencion_id": 5,
+                    "patron": "llega a",
+                    "tipo": "FRASE",
+                    "prioridad": 80,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 14,
+                    "intencion_id": 5,
+                    "patron": "retirar",
+                    "tipo": "FRASE",
+                    "prioridad": 80,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 15,
+                    "intencion_id": 5,
+                    "patron": "retiro",
+                    "tipo": "FRASE",
+                    "prioridad": 80,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                }
+            ],
+            "requisitos": [
+                {
+                    "id": 3,
+                    "intencion_id": 5,
+                    "codigo": "localidad",
+                    "nombre": "Localidad o código postal",
+                    "tipo": "texto",
+                    "obligatorio": 1,
+                    "prioridad": 90,
+                    "descripcion": "Dato mínimo para orientar la modalidad de entrega.",
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "proyecto_id": 2,
+            "intencion_id": 6,
+            "nombre": "Consultar pago",
+            "codigo": "LUMEN_CONSULTAR_PAGO",
+            "descripcion": "Consulta sobre medios de pago.",
+            "categoria": "PAGOS",
+            "prioridad": 70,
+            "requiere_contexto": 0,
+            "permite_derivacion": 1,
+            "activa": 1,
+            "patrones": [
+                {
+                    "id": 21,
+                    "intencion_id": 6,
+                    "patron": "cuotas",
+                    "tipo": "FRASE",
+                    "prioridad": 70,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 20,
+                    "intencion_id": 6,
+                    "patron": "mercado pago",
+                    "tipo": "FRASE",
+                    "prioridad": 70,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 18,
+                    "intencion_id": 6,
+                    "patron": "pago",
+                    "tipo": "FRASE",
+                    "prioridad": 70,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                },
+                {
+                    "id": 19,
+                    "intencion_id": 6,
+                    "patron": "transferencia",
+                    "tipo": "FRASE",
+                    "prioridad": 70,
+                    "activo": 1,
+                    "fecha_creacion": "2026-10-12 11:45:27",
+                    "fecha_actualizacion": "2026-10-12 11:45:27"
+                }
+            ],
+            "requisitos": []
+        }
+    ],
+    "requisitos": [
+        {
+            "id": 4,
+            "intencion_id": 7,
+            "codigo": "producto",
+            "nombre": "Producto",
+            "tipo": "texto",
+            "obligatorio": 1,
+            "prioridad": 100,
+            "descripcion": "Producto elegido.",
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 5,
+            "intencion_id": 7,
+            "codigo": "variante",
+            "nombre": "Color y talle",
+            "tipo": "texto",
+            "obligatorio": 1,
+            "prioridad": 90,
+            "descripcion": "Variante elegida.",
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 6,
+            "intencion_id": 7,
+            "codigo": "cantidad",
+            "nombre": "Cantidad",
+            "tipo": "numero",
+            "obligatorio": 1,
+            "prioridad": 80,
+            "descripcion": "Cantidad solicitada.",
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 7,
+            "intencion_id": 7,
+            "codigo": "nombre",
+            "nombre": "Nombre",
+            "tipo": "texto",
+            "obligatorio": 1,
+            "prioridad": 70,
+            "descripcion": "Nombre de la persona.",
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 8,
+            "intencion_id": 7,
+            "codigo": "telefono",
+            "nombre": "Teléfono",
+            "tipo": "texto",
+            "obligatorio": 1,
+            "prioridad": 60,
+            "descripcion": "Teléfono de contacto.",
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 9,
+            "intencion_id": 7,
+            "codigo": "entrega",
+            "nombre": "Modalidad de entrega",
+            "tipo": "texto",
+            "obligatorio": 1,
+            "prioridad": 50,
+            "descripcion": "Envío o retiro.",
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 2,
+            "intencion_id": 4,
+            "codigo": "producto",
+            "nombre": "Producto consultado",
+            "tipo": "texto",
+            "obligatorio": 1,
+            "prioridad": 100,
+            "descripcion": "Producto del catálogo que la persona desea consultar.",
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 3,
+            "intencion_id": 5,
+            "codigo": "localidad",
+            "nombre": "Localidad o código postal",
+            "tipo": "texto",
+            "obligatorio": 1,
+            "prioridad": 90,
+            "descripcion": "Dato mínimo para orientar la modalidad de entrega.",
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        }
+    ],
+    "capacidades": [
+        "Responder consultas de catálogo",
+        "Informar precio y variantes publicadas",
+        "Solicitar datos mínimos para un pedido",
+        "Prearmar pedido pendiente de revisión",
+        "Derivar casos especiales a una persona"
+    ],
+    "funciones": [
+        {
+            "id": 4,
+            "proyecto_id": 2,
+            "funcion_id": 3,
+            "nombre": "Consultar catálogo",
+            "categoria": "CATALOGO",
+            "descripcion": "Busca productos y precios disponibles.",
+            "objetivo": "Responder una consulta de precio.",
+            "estrategia_resolucion": "Consultar la herramienta de catálogo y devolver el resultado.",
+            "derivacion_humana": 1,
+            "activa": 1
+        },
+        {
+            "id": 3,
+            "proyecto_id": 2,
+            "funcion_id": 2,
+            "nombre": "vender",
+            "categoria": "ventas",
+            "descripcion": "concreta ventas",
+            "objetivo": "",
+            "estrategia_resolucion": "",
+            "derivacion_humana": 1,
+            "activa": 1
+        },
+        {
+            "id": 2,
+            "proyecto_id": 2,
+            "funcion_id": 1,
+            "nombre": "ventas",
+            "categoria": "ventas",
+            "descripcion": "acompañamiento en proceso de compra",
+            "objetivo": "concretar la venta ",
+            "estrategia_resolucion": "",
+            "derivacion_humana": 1,
+            "activa": 1
+        }
+    ],
+    "acciones": [
+        {
+            "id": 4,
+            "nombre": "Notificar responsable",
+            "operacion": "NOTIFICAR_RESPONSABLE",
+            "descripcion": "Prepara aviso lógico para revisión humana del pedido.",
+            "parametros": "[\"resumen_pedido\"]",
+            "activo": 1
+        },
+        {
+            "id": 2,
+            "nombre": "Consultar catálogo",
+            "operacion": "CONSULTAR_CATALOGO",
+            "descripcion": "Busca producto, precio, variantes y stock ficticio.",
+            "parametros": "[\"producto\", \"color\", \"talle\"]",
+            "activo": 1
+        },
+        {
+            "id": 3,
+            "nombre": "Prearmar pedido",
+            "operacion": "REGISTRAR_INTERES",
+            "descripcion": "Genera una solicitud PENDIENTE_DE_REVISION; no confirma compra.",
+            "parametros": "[\"producto\", \"variante\", \"cantidad\", \"nombre\", \"telefono\", \"entrega\"]",
+            "activo": 1
+        }
+    ],
+    "herramientas": [
+        {
+            "id": 4,
+            "nombre": "Aviso al responsable",
+            "tipo": "notificacion_logica",
+            "descripcion": "Contrato lógico de notificación al responsable humano; sin canal externo configurado.",
+            "configuracion": "{\"modo\": \"FICTICIO_LOGICO\", \"requiere_revision_humana\": true}",
+            "activo": 1,
+            "acciones": [
+                {
+                    "id": 4,
+                    "nombre": "Notificar responsable",
+                    "operacion": "NOTIFICAR_RESPONSABLE",
+                    "descripcion": "Prepara aviso lógico para revisión humana del pedido.",
+                    "parametros": "[\"resumen_pedido\"]",
+                    "activo": 1
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "nombre": "Catálogo Lumen Moda",
+            "tipo": "catalogo_local",
+            "descripcion": "Consulta de productos ficticios, precios, variantes y stock de prueba.",
+            "configuracion": "{\"modo\": \"FICTICIO_LOGICO\", \"requiere_revision_humana\": false}",
+            "activo": 1,
+            "acciones": [
+                {
+                    "id": 2,
+                    "nombre": "Consultar catálogo",
+                    "operacion": "CONSULTAR_CATALOGO",
+                    "descripcion": "Busca producto, precio, variantes y stock ficticio.",
+                    "parametros": "[\"producto\", \"color\", \"talle\"]",
+                    "activo": 1
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "nombre": "Registro de interés",
+            "tipo": "pedido_logico",
+            "descripcion": "Registra una solicitud como pendiente de revisión, sin confirmar pago ni reserva.",
+            "configuracion": "{\"modo\": \"FICTICIO_LOGICO\", \"requiere_revision_humana\": true}",
+            "activo": 1,
+            "acciones": [
+                {
+                    "id": 3,
+                    "nombre": "Prearmar pedido",
+                    "operacion": "REGISTRAR_INTERES",
+                    "descripcion": "Genera una solicitud PENDIENTE_DE_REVISION; no confirma compra.",
+                    "parametros": "[\"producto\", \"variante\", \"cantidad\", \"nombre\", \"telefono\", \"entrega\"]",
+                    "activo": 1
+                }
+            ]
+        }
+    ],
+    "flujos": [
+        {
+            "id": 2,
+            "proyecto_id": 2,
+            "nombre": "Consulta de producto",
+            "descripcion": "Responde precio, variantes y stock ficticio del catálogo.",
+            "disparador": "Consulta por producto o precio",
+            "condicion": "Producto identificado",
+            "accion": "Consultar catálogo y responder; si falta variante, preguntar color o talle.",
+            "prioridad": 100,
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 3,
+            "proyecto_id": 2,
+            "nombre": "Prearmado de pedido",
+            "descripcion": "Recopila los datos necesarios y deja el pedido pendiente de revisión humana.",
+            "disparador": "Cliente manifiesta intención de comprar",
+            "condicion": "Producto y variante definidos",
+            "accion": "Solicitar cantidad, nombre, teléfono y entrega; resumir; pedir confirmación.",
+            "prioridad": 90,
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 4,
+            "proyecto_id": 2,
+            "nombre": "Confirmación y aviso",
+            "descripcion": "Protege la venta: nunca confirma pago ni descuenta stock.",
+            "disparador": "Cliente confirma el resumen",
+            "condicion": "Datos mínimos completos",
+            "accion": "Registrar PENDIENTE_DE_REVISION y generar aviso lógico al responsable humano.",
+            "prioridad": 80,
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        },
+        {
+            "id": 5,
+            "proyecto_id": 2,
+            "nombre": "Derivación humana",
+            "descripcion": "Escala reclamos, cambios especiales, pagos o datos inexistentes.",
+            "disparador": "Consulta fuera de catálogo o excepción",
+            "condicion": "No hay respuesta confiable",
+            "accion": "Informar límite y derivar al responsable.",
+            "prioridad": 70,
+            "activo": 1,
+            "fecha_creacion": "2026-10-12 11:45:27",
+            "fecha_actualizacion": "2026-10-12 11:45:27"
+        }
+    ],
+    "configuracion": {
+        "max_pasos": 10,
+        "max_errores": 3,
+        "max_reintentos": 2,
+        "autonomia": "supervisada"
+    }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Personalidad</title>
+</head>
+
+<body>
+
+<h1>🎭 Estación Personalidad</h1>
+
+<p>Proyecto: {{ proyecto[1] }}</p>
+
+{% if personalidad %}
+
+<p>La personalidad ya fue configurada.</p>
+
+{% else %}
+
+<p>No existe personalidad para este proyecto.</p>
+
+{% endif %}
+
+</body>
+
+</html>

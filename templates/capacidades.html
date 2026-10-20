@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Estación Capacidades</title>
+</head>
+
+<body>
+
+<h1>⚙️ Estación Capacidades</h1>
+
+<p>
+
+<b>Proyecto:</b> {{ proyecto[1] }}
+
+</p>
+
+<hr>
+
+<form
+method="post"
+action="/proyectos/{{ proyecto[0] }}/capacidades/guardar">
+
+<h3>Capacidades disponibles</h3>
+
+<p>{{ capacidades }}</p>
+
+<p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="faq"
+{% if "faq" in capacidades %}checked{% endif %}>
+Responder preguntas frecuentes
+</label>
+
+</p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="catalogo"
+{% if "catalogo" in capacidades %}checked{% endif %}>
+Buscar productos y servicios
+</label>
+
+</p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="conocimiento"
+{% if "conocimiento" in capacidades %}checked{% endif %}>
+Consultar base de conocimiento
+</label>
+
+</p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="recomendar"
+{% if "recomendar" in capacidades %}checked{% endif %}>
+Recomendar productos
+</label>
+
+</p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="turnos"
+{% if "turnos" in capacidades %}checked{% endif %}>
+Gestionar turnos o reservas
+</label>
+
+</p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="pedidos"
+{% if "pedidos" in capacidades %}checked{% endif %}>
+Tomar pedidos
+</label>
+
+</p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="presupuestos"
+{% if "presupuestos" in capacidades %}checked{% endif %}>
+Generar presupuestos
+</label>
+
+</p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="documentacion"
+{% if "documentacion" in capacidades %}checked{% endif %}>
+Enviar documentación
+</label>
+
+</p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="clientes"
+{% if "clientes" in capacidades %}checked{% endif %}>
+Registrar datos de clientes
+</label>
+
+</p>
+
+<p>
+
+<label>
+<input
+type="checkbox"
+name="humano"
+{% if "humano" in capacidades %}checked{% endif %}>
+Derivar a un operador humano
+</label>
+
+</p>
+
+<br>
+
+<button type="submit">
+
+Guardar Capacidades
+
+</button>
+
+</form>
+
+</body>
+
+</html>

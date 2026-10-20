@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Acciones de la herramienta</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitulo {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .seccion {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .formulario {
+            display: grid;
+            gap: 15px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .boton-guardar {
+            background: #222;
+            color: white;
+        }
+
+        .accion {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .accion-inactiva {
+            opacity: 0.55;
+        }
+
+        .accion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .accion h3 {
+            margin: 0;
+        }
+
+        .operacion {
+            margin-top: 5px;
+            font-family: monospace;
+            color: #666;
+        }
+
+        .descripcion {
+            margin-top: 15px;
+            color: #444;
+        }
+
+        .parametros {
+            margin-top: 10px;
+            font-family: monospace;
+            color: #666;
+        }
+
+        .estado {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .activo {
+            color: green;
+        }
+
+        .inactivo {
+            color: #b00020;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .boton-activar {
+            background: #198754;
+            color: white;
+        }
+
+        .boton-desactivar {
+            background: #d97706;
+            color: white;
+        }
+
+        .boton-eliminar {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .vacio {
+            color: #777;
+            padding: 20px 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <a
+        class="volver"
+        href="/proyectos/{{ proyecto_id }}/herramientas"
+    >
+        ← Volver a herramientas
+    </a>
+
+    <h1>
+        Acciones de la herramienta
+    </h1>
+
+    <div class="subtitulo">
+        {{ herramienta[2] }}
+    </div>
+
+
+    <div class="seccion">
+
+        <h2>
+            Agregar acción
+        </h2>
+
+        <form
+            class="formulario"
+            method="post"
+            action="/herramientas/{{ herramienta[0] }}/acciones/guardar"
+        >
+
+            <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre de la acción"
+                required
+            >
+
+            <input
+                type="text"
+                name="codigo"
+                placeholder="Código de la operación, por ejemplo: consultar_precio"
+                required
+            >
+
+            <textarea
+                name="descripcion"
+                placeholder="Descripción de lo que hace esta acción"
+            ></textarea>
+
+            <textarea
+                name="parametros"
+                placeholder="Parámetros necesarios, opcional"
+            ></textarea>
+
+            <button
+                type="submit"
+                class="boton-guardar"
+            >
+                Agregar acción
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="seccion">
+
+        <h2>
+            Acciones configuradas
+        </h2>
+
+        {% if acciones %}
+
+            {% for accion in acciones %}
+
+                <div
+                    class="accion {% if not accion[5] %}accion-inactiva{% endif %}"
+                >
+
+                    <div class="accion-header">
+
+                        <h3>
+                            {{ accion[1] }}
+                        </h3>
+
+                    </div>
+
+
+                    <div class="operacion">
+                        Operación: {{ accion[2] }}
+                    </div>
+
+
+                    {% if accion[3] %}
+
+                        <div class="descripcion">
+                            {{ accion[3] }}
+                        </div>
+
+                    {% endif %}
+
+
+                    {% if accion[4] %}
+
+                        <div class="parametros">
+                            Parámetros: {{ accion[4] }}
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="estado">
+
+                        {% if accion[5] %}
+
+                            <span class="activo">
+                                ● Activa
+                            </span>
+
+                        {% else %}
+
+                            <span class="inactivo">
+                                ● Desactivada
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="acciones">
+
+                        <form
+                            method="post"
+                            action="/acciones/{{ accion[0] }}/estado"
+                        >
+
+                            <input
+                                type="hidden"
+                                name="activa"
+                                value="{% if accion[5] %}0{% else %}1{% endif %}"
+                            >
+
+                            {% if accion[5] %}
+
+                                <button
+                                    class="boton-desactivar"
+                                    type="submit"
+                                >
+                                    Desactivar
+                                </button>
+
+                            {% else %}
+
+                                <button
+                                    class="boton-activar"
+                                    type="submit"
+                                >
+                                    Activar
+                                </button>
+
+                            {% endif %}
+
+                        </form>
+
+
+                        <form
+                            method="post"
+                            action="/acciones/{{ accion[0] }}/eliminar"
+                            onsubmit="return confirm('¿Eliminar esta acción?');"
+                        >
+
+                            <button
+                                class="boton-eliminar"
+                                type="submit"
+                            >
+                                Eliminar
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="vacio">
+                Todavía no hay acciones configuradas para esta herramienta.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

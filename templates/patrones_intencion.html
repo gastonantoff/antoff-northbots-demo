@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Patrones de Intención</title>
+</head>
+
+<body>
+
+    <h1>🧩 Patrones de Intención</h1>
+
+    <p>
+        <strong>Intención:</strong>
+        {{ intencion[1] }}
+    </p>
+
+    <p>
+        <strong>Código:</strong>
+        {{ intencion[2] }}
+    </p>
+
+    <hr>
+
+
+    <h2>➕ Agregar nuevo patrón</h2>
+
+    <form
+        method="post"
+        action="/intenciones/{{ intencion[0] }}/patrones/guardar"
+    >
+
+        <p>
+            <label>
+                Patrón:
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                name="patron"
+                required
+            >
+        </p>
+
+
+        <p>
+            <label>
+                Tipo:
+            </label>
+
+            <br>
+
+            <select name="tipo">
+
+                <option value="FRASE">
+                    FRASE
+                </option>
+
+                <option value="PALABRA_CLAVE">
+                    PALABRA_CLAVE
+                </option>
+
+            </select>
+        </p>
+
+
+        <p>
+            <label>
+                Prioridad:
+            </label>
+
+            <br>
+
+            <input
+                type="number"
+                name="prioridad"
+                value="0"
+            >
+        </p>
+
+
+        <button type="submit">
+            ➕ Guardar patrón
+        </button>
+
+    </form>
+
+
+    <hr>
+
+
+    <h2>📋 Patrones registrados</h2>
+
+
+    {% if patrones %}
+
+        {% for patron in patrones %}
+
+            <hr>
+
+            <form
+                method="post"
+                action="/intenciones/{{ intencion[0] }}/patrones/{{ patron[0] }}/actualizar"
+            >
+
+                <p>
+
+                    <label>
+                        <strong>Patrón:</strong>
+                    </label>
+
+                    <br>
+
+                    <input
+                        type="text"
+                        name="patron"
+                        value="{{ patron[2] }}"
+                        required
+                    >
+
+                </p>
+
+
+                <p>
+
+                    <label>
+                        <strong>Tipo:</strong>
+                    </label>
+
+                    <br>
+
+                    <select name="tipo">
+
+                        <option
+                            value="FRASE"
+
+                            {% if patron[3] == "FRASE" %}
+                                selected
+                            {% endif %}
+                        >
+                            FRASE
+                        </option>
+
+
+                        <option
+                            value="PALABRA_CLAVE"
+
+                            {% if patron[3] == "PALABRA_CLAVE" %}
+                                selected
+                            {% endif %}
+                        >
+                            PALABRA_CLAVE
+                        </option>
+
+                    </select>
+
+                </p>
+
+
+                <p>
+
+                    <label>
+                        <strong>Prioridad:</strong>
+                    </label>
+
+                    <br>
+
+                    <input
+                        type="number"
+                        name="prioridad"
+                        value="{{ patron[4] }}"
+                    >
+
+                </p>
+
+
+                <p>
+
+                    <strong>Estado:</strong>
+
+                    {% if patron[5] == 1 %}
+                        🟢 Activo
+                    {% else %}
+                        🔴 Inactivo
+                    {% endif %}
+
+                </p>
+
+
+                <p>
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            name="activo"
+                            value="1"
+
+                            {% if patron[5] == 1 %}
+                                checked
+                            {% endif %}
+                        >
+
+                        Activo
+
+                    </label>
+
+                </p>
+
+
+                <button type="submit">
+                    💾 Guardar cambios
+                </button>
+
+            </form>
+
+
+            <br>
+
+
+            <form
+                method="post"
+                action="/intenciones/{{ intencion[0] }}/patrones/{{ patron[0] }}/eliminar"
+            >
+
+                <button type="submit">
+                    🗑️ Eliminar patrón
+                </button>
+
+            </form>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            Esta intención todavía no tiene patrones registrados.
+        </p>
+
+    {% endif %}
+
+
+    <hr>
+
+
+    <p>
+        <a href="/intenciones">
+            ⬅️ Volver a Intenciones
+        </a>
+    </p>
+
+</body>
+
+</html>

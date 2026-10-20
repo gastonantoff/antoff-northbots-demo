@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Estación Accesos y Permisos</title>
+</head>
+
+<body>
+
+<h1>🔐 Estación Accesos y Permisos</h1>
+
+<p>
+    <b>Proyecto:</b> {{ proyecto[1] }}
+</p>
+
+<hr>
+
+<h3>Recursos autorizados</h3>
+
+{% if accesos %}
+
+{% for acceso in accesos %}
+
+<hr>
+
+<h4>{{ acceso[2] }}</h4>
+
+<form
+    method="post"
+    action="/proyectos/{{ proyecto[0] }}/accesos/{{ acceso[0] }}/actualizar"
+>
+
+<p>
+
+<label>
+    Nombre del recurso:
+</label>
+
+<br>
+
+<input
+    type="text"
+    name="nombre_recurso"
+    value="{{ acceso[2] }}"
+    required
+>
+
+</p>
+
+<p>
+
+<label>
+    Tipo de recurso:
+</label>
+
+<br>
+
+<select name="tipo_recurso">
+
+    <option
+        value="documento"
+        {% if acceso[3] == "documento" %}selected{% endif %}
+    >
+        Documento
+    </option>
+
+    <option
+        value="carpeta"
+        {% if acceso[3] == "carpeta" %}selected{% endif %}
+    >
+        Carpeta
+    </option>
+
+    <option
+        value="archivo"
+        {% if acceso[3] == "archivo" %}selected{% endif %}
+    >
+        Archivo
+    </option>
+
+    <option
+        value="base_datos"
+        {% if acceso[3] == "base_datos" %}selected{% endif %}
+    >
+        Base de datos
+    </option>
+
+    <option
+        value="api"
+        {% if acceso[3] == "api" %}selected{% endif %}
+    >
+        API
+    </option>
+
+    <option
+        value="otro"
+        {% if acceso[3] == "otro" %}selected{% endif %}
+    >
+        Otro
+    </option>
+
+</select>
+
+</p>
+
+<p>
+
+<label>
+    Ubicación:
+</label>
+
+<br>
+
+<input
+    type="text"
+    name="ubicacion"
+    value="{{ acceso[4] or '' }}"
+>
+
+</p>
+
+<p>
+
+<label>
+    Permiso:
+</label>
+
+<br>
+
+<select name="permiso">
+
+    <option
+        value="lectura"
+        {% if acceso[5] == "lectura" %}selected{% endif %}
+    >
+        Solo lectura
+    </option>
+
+    <option
+        value="lectura_escritura"
+        {% if acceso[5] == "lectura_escritura" %}selected{% endif %}
+    >
+        Lectura y escritura
+    </option>
+
+</select>
+
+</p>
+
+<p>
+
+<label>
+    Descripción:
+</label>
+
+<br>
+
+<textarea
+    name="descripcion"
+    rows="4"
+    cols="50"
+>{{ acceso[6] or '' }}</textarea>
+
+</p>
+
+<button type="submit">
+    Actualizar recurso
+</button>
+
+</form>
+
+<br>
+
+<form
+    method="post"
+    action="/proyectos/{{ proyecto[0] }}/accesos/{{ acceso[0] }}/estado"
+>
+
+{% if acceso[7] == 1 %}
+
+<input
+    type="hidden"
+    name="activo"
+    value="0"
+>
+
+<button type="submit">
+    Desactivar acceso
+</button>
+
+<p>
+    <b>Estado:</b> Activo
+</p>
+
+{% else %}
+
+<input
+    type="hidden"
+    name="activo"
+    value="1"
+>
+
+<button type="submit">
+    Activar acceso
+</button>
+
+<p>
+    <b>Estado:</b> Inactivo
+</p>
+
+{% endif %}
+
+</form>
+
+{% endfor %}
+
+{% else %}
+
+<p>
+    Este proyecto todavía no tiene recursos autorizados.
+</p>
+
+{% endif %}
+
+<hr>
+
+<h3>Agregar recurso</h3>
+
+<form
+    method="post"
+    action="/proyectos/{{ proyecto[0] }}/accesos/guardar"
+>
+
+<p>
+
+<label>
+    Nombre del recurso:
+</label>
+
+<br>
+
+<input
+    type="text"
+    name="nombre_recurso"
+    required
+>
+
+</p>
+
+<p>
+
+<label>
+    Tipo de recurso:
+</label>
+
+<br>
+
+<select name="tipo_recurso">
+
+    <option value="documento">
+        Documento
+    </option>
+
+    <option value="carpeta">
+        Carpeta
+    </option>
+
+    <option value="archivo">
+        Archivo
+    </option>
+
+    <option value="base_datos">
+        Base de datos
+    </option>
+
+    <option value="api">
+        API
+    </option>
+
+    <option value="otro">
+        Otro
+    </option>
+
+</select>
+
+</p>
+
+<p>
+
+<label>
+    Ubicación:
+</label>
+
+<br>
+
+<input
+    type="text"
+    name="ubicacion"
+    placeholder="Ruta, URL o referencia"
+>
+
+</p>
+
+<p>
+
+<label>
+    Permiso:
+</label>
+
+<br>
+
+<select name="permiso">
+
+    <option value="lectura">
+        Solo lectura
+    </option>
+
+    <option value="lectura_escritura">
+        Lectura y escritura
+    </option>
+
+</select>
+
+</p>
+
+<p>
+
+<label>
+    Descripción:
+</label>
+
+<br>
+
+<textarea
+    name="descripcion"
+    rows="4"
+    cols="50"
+></textarea>
+
+</p>
+
+<br>
+
+<button type="submit">
+    Guardar recurso
+</button>
+
+</form>
+
+</body>
+
+</html>

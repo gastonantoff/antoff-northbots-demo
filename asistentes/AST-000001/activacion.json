@@ -1,0 +1,40 @@
+{
+    "estado": "LISTO_PARA_PRUEBAS",
+    "activo": true,
+    "listo_para_pruebas": true,
+    "asistente_id": "AST-000001",
+    "nombre": "taller",
+    "fecha_activacion": "2026-09-28T21:56:28.503457",
+    "componentes": {
+        "intenciones": 1,
+        "funciones": 1,
+        "acciones": 1,
+        "herramientas": 1
+    },
+    "rutas": {
+        "runtime": "C:\\Users\\5600G\\Downloads\\constructor bots whatsap2\\asistentes\\AST-000001\\asistente.py"
+    },
+    "errores": [],
+    "advertencias": [],
+    "paquete_pruebas": {
+        "asistente_id": "AST-000001",
+        "nombre": "taller",
+        "estado": "LISTO_PARA_PRUEBAS",
+        "origen": "ESTACION_13",
+        "estacion_siguiente": 14,
+        "objetivo": "Validar conocimiento, inteligencia, conversación y funcionamiento del asistente.",
+        "componentes": {
+            "intenciones": 1,
+            "funciones": 1,
+            "acciones": 1,
+            "herramientas": 1
+        },
+        "pruebas": {
+            "conocimiento": false,
+            "inteligencia": false,
+            "conversacion": false,
+            "validacion_final": false
+        },
+        "fecha_entrega": "2026-09-28T21:56:28.503457"
+    }
+}

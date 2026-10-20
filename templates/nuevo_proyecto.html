@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Proyecto</title>
+</head>
+<body>
+
+    <h1>Nuevo Proyecto</h1>
+
+    <form action="/proyectos/guardar" method="post">
+
+        <p>
+            <label>Nombre del proyecto</label><br>
+            <input
+                type="text"
+                name="nombre"
+                required
+            >
+        </p>
+
+        <p>
+            <label>Cliente</label><br>
+            <input
+                type="text"
+                name="cliente"
+                required
+            >
+        </p>
+
+        <p>
+            <label>Empresa</label><br>
+            <input
+                type="text"
+                name="empresa"
+                required
+            >
+        </p>
+
+        <p>
+            <label>Rubro</label><br>
+            <input
+                type="text"
+                name="rubro"
+                required
+            >
+        </p>
+
+        <p>
+            <label>Estado</label><br>
+            <select name="estado">
+                <option value="En desarrollo">En desarrollo</option>
+                <option value="En pruebas">En pruebas</option>
+                <option value="Instalado">Instalado</option>
+                <option value="Pausado">Pausado</option>
+            </select>
+        </p>
+
+        <p>
+            <button type="submit">
+                Crear Proyecto
+            </button>
+        </p>
+
+    </form>
+
+    <p>
+        <a href="/proyectos">
+            ← Volver
+        </a>
+    </p>
+
+</body>
+</html>

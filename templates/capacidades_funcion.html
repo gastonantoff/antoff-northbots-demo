@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Capacidades de la función</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .seccion {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .herramienta {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .herramienta h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .tipo {
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .accion {
+            background: #f7f7f7;
+            border-left: 4px solid #444;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .accion strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .operacion {
+            font-family: monospace;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .descripcion {
+            color: #444;
+        }
+
+        .vacio {
+            color: #777;
+            padding: 15px 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <a
+        href="javascript:history.back()"
+        class="volver"
+    >
+        ← Volver
+    </a>
+
+    <h1>🧠 Capacidades reales de la función</h1>
+
+    <div class="seccion">
+
+        {% if capacidades %}
+
+            {% set herramienta_actual = namespace(id=None) %}
+
+            {% for capacidad in capacidades %}
+
+                {% if herramienta_actual.id != capacidad[5] %}
+
+                    {% if herramienta_actual.id is not none %}
+                        </div>
+                    {% endif %}
+
+                    <div class="herramienta">
+
+                        <h2>
+                            {{ capacidad[6] }}
+                        </h2>
+
+                        <div class="tipo">
+                            Tipo: {{ capacidad[7] }}
+
+                            {% if capacidad[8] %}
+                                — {{ capacidad[8] }}
+                            {% endif %}
+                        </div>
+
+                    {% set herramienta_actual.id = capacidad[5] %}
+
+                {% endif %}
+
+                <div class="accion">
+
+                    <strong>
+                        ✓ {{ capacidad[2] }}
+                    </strong>
+
+                    <div class="operacion">
+                        {{ capacidad[3] }}
+                    </div>
+
+                    {% if capacidad[4] %}
+
+                        <div class="descripcion">
+                            {{ capacidad[4] }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+            {% if herramienta_actual.id is not none %}
+                </div>
+            {% endif %}
+
+        {% else %}
+
+            <div class="vacio">
+                Esta función no tiene capacidades activas disponibles.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Capacidades del Proyecto</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .seccion {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .funcion {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .funcion h2 {
+            margin-top: 0;
+        }
+
+        .herramienta {
+            background: #f7f7f7;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .herramienta h3 {
+            margin-top: 0;
+        }
+
+        .accion {
+            background: white;
+            border-left: 4px solid #444;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        .operacion {
+            font-family: monospace;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .descripcion {
+            color: #444;
+            margin-top: 5px;
+        }
+
+        .vacio {
+            color: #777;
+            padding: 15px 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <a
+        href="javascript:history.back()"
+        class="volver"
+    >
+        ← Volver
+    </a>
+
+    <h1>🧠 Capacidades reales del proyecto</h1>
+
+    <div class="seccion">
+
+        {% if capacidades %}
+
+            {% set funcion_actual = namespace(id=None) %}
+            {% set herramienta_actual = namespace(id=None) %}
+
+            {% for capacidad in capacidades %}
+
+                {% if funcion_actual.id != capacidad[0] %}
+
+                    {% if funcion_actual.id is not none %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="funcion">
+
+                        <h2>
+                            🧩 {{ capacidad[1] }}
+                        </h2>
+
+                        {% set funcion_actual.id = capacidad[0] %}
+                        {% set herramienta_actual.id = None %}
+
+                {% endif %}
+
+
+                {% if herramienta_actual.id != capacidad[6] %}
+
+                    {% if herramienta_actual.id is not none %}
+                        </div>
+                    {% endif %}
+
+                    <div class="herramienta">
+
+                        <h3>
+                            🛠 {{ capacidad[7] }}
+                        </h3>
+
+                        <p>
+                            Tipo: {{ capacidad[8] }}
+
+                            {% if capacidad[9] %}
+                                — {{ capacidad[9] }}
+                            {% endif %}
+                        </p>
+
+                        {% set herramienta_actual.id = capacidad[6] %}
+
+                {% endif %}
+
+
+                <div class="accion">
+
+                    <strong>
+                        ✓ {{ capacidad[3] }}
+                    </strong>
+
+                    <div class="operacion">
+                        {{ capacidad[4] }}
+                    </div>
+
+                    {% if capacidad[5] %}
+
+                        <div class="descripcion">
+                            {{ capacidad[5] }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+            {% if funcion_actual.id is not none %}
+                    </div>
+                </div>
+            {% endif %}
+
+        {% else %}
+
+            <div class="vacio">
+
+                Este proyecto todavía no tiene capacidades activas disponibles.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

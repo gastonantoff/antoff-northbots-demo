@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Biblioteca de Intenciones</title>
+</head>
+
+<body>
+
+    <h1>🎯 Biblioteca de Intenciones</h1>
+
+    <p>
+        Las intenciones representan lo que el usuario quiere
+        hacer o conseguir cuando interactúa con el bot.
+    </p>
+
+    <hr>
+
+    <h2>➕ Crear nueva intención</h2>
+
+    <form
+        method="post"
+        action="/intenciones/guardar"
+    >
+
+        <p>
+            <label>
+                <strong>Nombre:</strong>
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                name="nombre"
+                required
+            >
+        </p>
+
+
+        <p>
+            <label>
+                <strong>Código:</strong>
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                name="codigo"
+                placeholder="CONSULTAR_PRECIO"
+                required
+            >
+        </p>
+
+
+        <p>
+            <label>
+                <strong>Categoría:</strong>
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                name="categoria"
+                placeholder="Consultas"
+            >
+        </p>
+
+
+        <p>
+            <label>
+                <strong>Descripción:</strong>
+            </label>
+
+            <br>
+
+            <textarea
+                name="descripcion"
+                rows="4"
+                cols="60"
+            ></textarea>
+        </p>
+
+
+        <p>
+            <label>
+                <strong>Prioridad:</strong>
+            </label>
+
+            <br>
+
+            <input
+                type="number"
+                name="prioridad"
+                value="0"
+            >
+        </p>
+
+
+        <p>
+            <label>
+                <input
+                    type="checkbox"
+                    name="requiere_contexto"
+                    value="1"
+                >
+
+                Requiere contexto
+            </label>
+        </p>
+
+
+        <p>
+            <label>
+                <input
+                    type="checkbox"
+                    name="permite_derivacion"
+                    value="1"
+                    checked
+                >
+
+                Permite derivación humana
+            </label>
+        </p>
+
+
+        <button type="submit">
+            💾 Guardar intención
+        </button>
+
+    </form>
+
+
+    <hr>
+
+
+    <h2>📚 Intenciones existentes</h2>
+
+
+    {% if intenciones %}
+
+        {% for intencion in intenciones %}
+
+            <hr>
+
+            <h3>
+                🎯 {{ intencion[1] }}
+            </h3>
+
+
+            <p>
+                <strong>Código:</strong>
+                {{ intencion[2] }}
+            </p>
+
+
+            <p>
+                <strong>Categoría:</strong>
+                {{ intencion[4] or "Sin categoría" }}
+            </p>
+
+
+            <p>
+                <strong>Descripción:</strong>
+                {{ intencion[3] or "Sin descripción" }}
+            </p>
+
+
+            <p>
+                <strong>Prioridad:</strong>
+                {{ intencion[5] }}
+            </p>
+
+
+            <p>
+                <strong>Requiere contexto:</strong>
+
+                {% if intencion[6] == 1 %}
+                    Sí
+                {% else %}
+                    No
+                {% endif %}
+            </p>
+
+
+            <p>
+                <strong>Permite derivación humana:</strong>
+
+                {% if intencion[7] == 1 %}
+                    Sí
+                {% else %}
+                    No
+                {% endif %}
+            </p>
+
+
+            <p>
+                <strong>Estado:</strong>
+
+                {% if intencion[8] == 1 %}
+                    🟢 Activa
+                {% else %}
+                    🔴 Inactiva
+                {% endif %}
+            </p>
+
+
+            <!-- PATRONES DE INTENCIÓN -->
+
+            <p>
+                <a href="/intenciones/{{ intencion[0] }}/patrones">
+                    🧩 Administrar patrones
+                </a>
+            </p>
+
+
+            <details>
+
+                <summary>
+                    ✏️ Editar intención
+                </summary>
+
+
+                <br>
+
+
+                <form
+                    method="post"
+                    action="/intenciones/{{ intencion[0] }}/actualizar"
+                >
+
+                    <p>
+                        <label>
+                            Nombre:
+                        </label>
+
+                        <br>
+
+                        <input
+                            type="text"
+                            name="nombre"
+                            value="{{ intencion[1] }}"
+                            required
+                        >
+                    </p>
+
+
+                    <p>
+                        <label>
+                            Código:
+                        </label>
+
+                        <br>
+
+                        <input
+                            type="text"
+                            name="codigo"
+                            value="{{ intencion[2] }}"
+                            required
+                        >
+                    </p>
+
+
+                    <p>
+                        <label>
+                            Categoría:
+                        </label>
+
+                        <br>
+
+                        <input
+                            type="text"
+                            name="categoria"
+                            value="{{ intencion[4] or '' }}"
+                        >
+                    </p>
+
+
+                    <p>
+                        <label>
+                            Descripción:
+                        </label>
+
+                        <br>
+
+                        <textarea
+                            name="descripcion"
+                            rows="4"
+                            cols="60"
+                        >{{ intencion[3] or '' }}</textarea>
+                    </p>
+
+
+                    <p>
+                        <label>
+                            Prioridad:
+                        </label>
+
+                        <br>
+
+                        <input
+                            type="number"
+                            name="prioridad"
+                            value="{{ intencion[5] }}"
+                        >
+                    </p>
+
+
+                    <p>
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="requiere_contexto"
+                                value="1"
+
+                                {% if intencion[6] == 1 %}
+                                    checked
+                                {% endif %}
+                            >
+
+                            Requiere contexto
+
+                        </label>
+
+                    </p>
+
+
+                    <p>
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="permite_derivacion"
+                                value="1"
+
+                                {% if intencion[7] == 1 %}
+                                    checked
+                                {% endif %}
+                            >
+
+                            Permite derivación humana
+
+                        </label>
+
+                    </p>
+
+
+                    <p>
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="activa"
+                                value="1"
+
+                                {% if intencion[8] == 1 %}
+                                    checked
+                                {% endif %}
+                            >
+
+                            Intención activa
+
+                        </label>
+
+                    </p>
+
+
+                    <button type="submit">
+                        💾 Guardar cambios
+                    </button>
+
+                </form>
+
+            </details>
+
+
+            <br>
+
+
+            <form
+                method="post"
+                action="/intenciones/{{ intencion[0] }}/eliminar"
+            >
+
+                <button type="submit">
+                    🗑️ Eliminar intención
+                </button>
+
+            </form>
+
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            Todavía no hay intenciones creadas.
+        </p>
+
+    {% endif %}
+
+
+    <hr>
+
+
+    <p>
+        <a href="/">
+            ⬅️ Volver al inicio
+        </a>
+    </p>
+
+
+</body>
+
+</html>

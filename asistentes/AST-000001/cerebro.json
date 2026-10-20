@@ -1,0 +1,129 @@
+{
+    "version": "1.0",
+    "pipeline": [
+        "DETECTAR_INTENCION",
+        "ACTUALIZAR_CONTEXTO",
+        "EVALUAR_REQUISITOS",
+        "DETERMINAR_DECISION",
+        "SELECCIONAR_FUNCION",
+        "SELECCIONAR_ACCION",
+        "SELECCIONAR_HERRAMIENTA",
+        "ORQUESTAR",
+        "CONTROLAR_AUTONOMIA",
+        "EJECUTAR"
+    ],
+    "intenciones": [
+        {
+            "id": 1,
+            "proyecto_id": 1,
+            "intencion_id": 3,
+            "nombre": "Consultar precio",
+            "codigo": "CONSULTAR_PRECIO",
+            "descripcion": "Responder consultas de precio usando el catálogo.",
+            "categoria": "CATALOGO",
+            "prioridad": 10,
+            "requiere_contexto": 1,
+            "permite_derivacion": 1,
+            "activa": 1,
+            "patrones": [],
+            "requisitos": [
+                {
+                    "id": 1,
+                    "intencion_id": 3,
+                    "codigo": "producto",
+                    "nombre": "Producto",
+                    "tipo": "texto",
+                    "obligatorio": 1,
+                    "prioridad": 10,
+                    "descripcion": "Producto o repuesto consultado por el cliente.",
+                    "activo": 1,
+                    "fecha_creacion": null,
+                    "fecha_actualizacion": null
+                }
+            ]
+        }
+    ],
+    "requisitos": [
+        {
+            "id": 1,
+            "intencion_id": 3,
+            "codigo": "producto",
+            "nombre": "Producto",
+            "tipo": "texto",
+            "obligatorio": 1,
+            "prioridad": 10,
+            "descripcion": "Producto o repuesto consultado por el cliente.",
+            "activo": 1,
+            "fecha_creacion": null,
+            "fecha_actualizacion": null
+        }
+    ],
+    "capacidades": [
+        "catalogo"
+    ],
+    "funciones": [
+        {
+            "id": 1,
+            "proyecto_id": 1,
+            "funcion_id": 3,
+            "nombre": "Consultar catálogo",
+            "categoria": "CATALOGO",
+            "descripcion": "Busca productos y precios disponibles.",
+            "objetivo": "Responder una consulta de precio.",
+            "estrategia_resolucion": "Consultar la herramienta de catálogo y devolver el resultado.",
+            "derivacion_humana": 1,
+            "activa": 1
+        }
+    ],
+    "acciones": [
+        {
+            "id": 1,
+            "nombre": "consulta",
+            "operacion": "precio",
+            "descripcion": "consulta precio en el catalogo",
+            "parametros": "busca por fecha actualizada",
+            "activo": 1
+        }
+    ],
+    "herramientas": [
+        {
+            "id": 1,
+            "nombre": "catalogo",
+            "tipo": "catalogo",
+            "descripcion": "consulta productos",
+            "configuracion": "",
+            "activo": 1,
+            "acciones": [
+                {
+                    "id": 1,
+                    "nombre": "consulta",
+                    "operacion": "precio",
+                    "descripcion": "consulta precio en el catalogo",
+                    "parametros": "busca por fecha actualizada",
+                    "activo": 1
+                }
+            ]
+        }
+    ],
+    "flujos": [
+        {
+            "id": 1,
+            "proyecto_id": 1,
+            "nombre": "precios",
+            "descripcion": "responder",
+            "disparador": "cliente pregunta",
+            "condicion": "producto de catalogo",
+            "accion": "consultar catalogo y responder",
+            "prioridad": 15,
+            "activo": 1,
+            "fecha_creacion": "2026-08-14 16:05:17",
+            "fecha_actualizacion": "2026-08-14 17:07:18"
+        }
+    ],
+    "configuracion": {
+        "max_pasos": 10,
+        "max_errores": 3,
+        "max_reintentos": 2,
+        "autonomia": "supervisada"
+    }
+}

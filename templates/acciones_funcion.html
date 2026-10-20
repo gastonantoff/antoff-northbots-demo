@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Acciones de la función</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .seccion {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .accion {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .accion-inactiva {
+            opacity: 0.55;
+        }
+
+        .accion h3 {
+            margin: 0 0 8px 0;
+        }
+
+        .operacion {
+            font-family: monospace;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .descripcion {
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 9px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .boton-asignar {
+            background: #222;
+            color: white;
+        }
+
+        .boton-activar {
+            background: #198754;
+            color: white;
+        }
+
+        .boton-desactivar {
+            background: #d97706;
+            color: white;
+        }
+
+        .boton-quitar {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .estado {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .activo {
+            color: green;
+        }
+
+        .inactivo {
+            color: #b00020;
+        }
+
+        .vacio {
+            color: #777;
+            padding: 15px 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <a
+        href="javascript:history.back()"
+        class="volver"
+    >
+        ← Volver
+    </a>
+
+
+    <h1>
+        Acciones de la función
+    </h1>
+
+
+    <div class="seccion">
+
+        <h2>
+            Acciones disponibles
+        </h2>
+
+
+        {% if acciones_disponibles %}
+
+            {% for accion in acciones_disponibles %}
+
+                <div class="accion">
+
+                    <h3>
+                        {{ accion[1] }}
+                    </h3>
+
+                    <div class="operacion">
+                        Operación: {{ accion[2] }}
+                    </div>
+
+
+                    {% if accion[3] %}
+
+                        <div class="descripcion">
+                            {{ accion[3] }}
+                        </div>
+
+                    {% endif %}
+
+
+                    <form
+                        method="post"
+                        action="/funciones/{{ funcion_id }}/acciones/asignar"
+                    >
+
+                        <input
+                            type="hidden"
+                            name="accion_id"
+                            value="{{ accion[0] }}"
+                        >
+
+                        <button
+                            type="submit"
+                            class="boton-asignar"
+                        >
+                            Asignar acción
+                        </button>
+
+                    </form>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="vacio">
+                No hay acciones disponibles para asignar.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+
+    <div class="seccion">
+
+        <h2>
+            Acciones asignadas
+        </h2>
+
+
+        {% if acciones_asignadas %}
+
+            {% for accion in acciones_asignadas %}
+
+                <div
+                    class="accion {% if not accion[5] %}accion-inactiva{% endif %}"
+                >
+
+                    <h3>
+                        {{ accion[2] }}
+                    </h3>
+
+                    <div class="operacion">
+                        Operación: {{ accion[3] }}
+                    </div>
+
+
+                    {% if accion[4] %}
+
+                        <div class="descripcion">
+                            {{ accion[4] }}
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="estado">
+
+                        {% if accion[5] %}
+
+                            <span class="activo">
+                                ● Activa
+                            </span>
+
+                        {% else %}
+
+                            <span class="inactivo">
+                                ● Desactivada
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="acciones">
+
+
+                        <form
+                            method="post"
+                            action="/funciones/acciones/{{ accion[0] }}/estado"
+                        >
+
+                            <input
+                                type="hidden"
+                                name="funcion_id"
+                                value="{{ funcion_id }}"
+                            >
+
+                            <input
+                                type="hidden"
+                                name="activa"
+                                value="{% if accion[5] %}0{% else %}1{% endif %}"
+                            >
+
+
+                            {% if accion[5] %}
+
+                                <button
+                                    type="submit"
+                                    class="boton-desactivar"
+                                >
+                                    Desactivar
+                                </button>
+
+                            {% else %}
+
+                                <button
+                                    type="submit"
+                                    class="boton-activar"
+                                >
+                                    Activar
+                                </button>
+
+                            {% endif %}
+
+                        </form>
+
+
+
+                        <form
+                            method="post"
+                            action="/funciones/acciones/{{ accion[0] }}/quitar"
+                            onsubmit="return confirm('¿Quitar esta acción de la función?');"
+                        >
+
+                            <input
+                                type="hidden"
+                                name="funcion_id"
+                                value="{{ funcion_id }}"
+                            >
+
+                            <button
+                                type="submit"
+                                class="boton-quitar"
+                            >
+                                Quitar
+                            </button>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="vacio">
+                Esta función todavía no tiene acciones asignadas.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Conocimiento</title>
+</head>
+
+<body>
+
+<h1>🧠 Conocimiento</h1>
+
+<h2>{{ proyecto[1] }}</h2>
+
+<hr>
+
+<a href="/proyectos">← Volver a proyectos</a>
+
+|
+
+<a href="/proyectos/{{ proyecto[0] }}/conocimiento/nuevo">
+    ➕ Agregar conocimiento
+</a>
+
+<hr>
+
+<table border="1" cellpadding="8">
+
+<tr>
+    <th>Categoría</th>
+    <th>Título</th>
+    <th>Contenido</th>
+    <th>Acciones</th>
+</tr>
+
+{% for item in conocimientos %}
+
+<tr>
+
+    <td>{{ item[1] }}</td>
+
+    <td>{{ item[2] }}</td>
+
+    <td>{{ item[3] }}</td>
+
+    <td>
+
+        ✏️ Editar |
+
+        🗑 Eliminar
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

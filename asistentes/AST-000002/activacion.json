@@ -1,0 +1,40 @@
+{
+    "estado": "LISTO_PARA_PRUEBAS",
+    "activo": true,
+    "listo_para_pruebas": true,
+    "asistente_id": "AST-000002",
+    "nombre": "Piloto ficticio — LUMEN MODA",
+    "fecha_activacion": "2026-10-12T09:46:14.644893",
+    "componentes": {
+        "intenciones": 5,
+        "funciones": 3,
+        "acciones": 3,
+        "herramientas": 3
+    },
+    "rutas": {
+        "runtime": "C:\\Users\\5600G\\Downloads\\constructor bots whatsap2\\asistentes\\AST-000002\\asistente.py"
+    },
+    "errores": [],
+    "advertencias": [],
+    "paquete_pruebas": {
+        "asistente_id": "AST-000002",
+        "nombre": "Piloto ficticio — LUMEN MODA",
+        "estado": "LISTO_PARA_PRUEBAS",
+        "origen": "ESTACION_13",
+        "estacion_siguiente": 14,
+        "objetivo": "Validar conocimiento, inteligencia, conversación y funcionamiento del asistente.",
+        "componentes": {
+            "intenciones": 5,
+            "funciones": 3,
+            "acciones": 3,
+            "herramientas": 3
+        },
+        "pruebas": {
+            "conocimiento": false,
+            "inteligencia": false,
+            "conversacion": false,
+            "validacion_final": false
+        },
+        "fecha_entrega": "2026-10-12T09:46:14.644919"
+    }
+}

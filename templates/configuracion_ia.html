@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Estación Configuración IA</title>
+</head>
+
+<body>
+
+<h1>🧠 Estación Configuración IA</h1>
+
+<p>
+<b>Proyecto:</b> {{ proyecto[1] }}
+</p>
+
+<hr>
+
+<form
+method="post"
+action="/proyectos/{{ proyecto[0] }}/configuracion-ia/guardar">
+
+<h3>Modelo IA</h3>
+
+<select name="modelo">
+
+<option value="GPT-5.5" {% if configuracion[2] == "GPT-5.5" %}selected{% endif %}>GPT-5.5</option>
+
+<option value="GPT-5.5 Mini" {% if configuracion[2] == "GPT-5.5 Mini" %}selected{% endif %}>GPT-5.5 Mini</option>
+
+<option value="GPT-5.5 Nano" {% if configuracion[2] == "GPT-5.5 Nano" %}selected{% endif %}>GPT-5.5 Nano</option>
+
+</select>
+
+<br><br>
+
+<h3>Nivel de razonamiento</h3>
+
+<select name="razonamiento">
+
+<option value="Bajo" {% if configuracion[3] == "Bajo" %}selected{% endif %}>Bajo</option>
+
+<option value="Medio" {% if configuracion[3] == "Medio" %}selected{% endif %}>Medio</option>
+
+<option value="Alto" {% if configuracion[3] == "Alto" %}selected{% endif %}>Alto</option>
+
+</select>
+
+<br><br>
+
+<h3>Creatividad</h3>
+
+<select name="creatividad">
+
+<option value="Muy precisa" {% if configuracion[4] == "Muy precisa" %}selected{% endif %}>Muy precisa</option>
+
+<option value="Equilibrada" {% if configuracion[4] == "Equilibrada" %}selected{% endif %}>Equilibrada</option>
+
+<option value="Creativa" {% if configuracion[4] == "Creativa" %}selected{% endif %}>Creativa</option>
+
+<option value="Muy creativa" {% if configuracion[4] == "Muy creativa" %}selected{% endif %}>Muy creativa</option>
+
+</select>
+
+<br><br>
+
+<h3>Longitud de respuestas</h3>
+
+<select name="longitud">
+
+<option value="Muy cortas" {% if configuracion[5] == "Muy cortas" %}selected{% endif %}>Muy cortas</option>
+
+<option value="Cortas" {% if configuracion[5] == "Cortas" %}selected{% endif %}>Cortas</option>
+
+<option value="Medias" {% if configuracion[5] == "Medias" %}selected{% endif %}>Medias</option>
+
+<option value="Largas" {% if configuracion[5] == "Largas" %}selected{% endif %}>Largas</option>
+
+</select>
+
+<br><br>
+
+<h3>Iniciativa conversacional</h3>
+
+<select name="iniciativa">
+
+<option value="Solo responde" {% if configuracion[6] == "Solo responde" %}selected{% endif %}>Solo responde</option>
+
+<option value="Hace preguntas cuando es necesario" {% if configuracion[6] == "Hace preguntas cuando es necesario" %}selected{% endif %}>Hace preguntas cuando es necesario</option>
+
+<option value="Guía la conversación" {% if configuracion[6] == "Guía la conversación" %}selected{% endif %}>Guía la conversación</option>
+
+<option value="Busca cumplir el objetivo" {% if configuracion[6] == "Busca cumplir el objetivo" %}selected{% endif %}>Busca cumplir el objetivo</option>
+
+</select>
+
+<br><br>
+
+<h3>Nivel de autonomía</h3>
+
+<select name="autonomia">
+
+<option value="Nunca decide" {% if configuracion[7] == "Nunca decide" %}selected{% endif %}>Nunca decide</option>
+
+<option value="Decide dentro de reglas" {% if configuracion[7] == "Decide dentro de reglas" %}selected{% endif %}>Decide dentro de reglas</option>
+
+<option value="Máxima autonomía" {% if configuracion[7] == "Máxima autonomía" %}selected{% endif %}>Máxima autonomía</option>
+
+</select>
+
+<br><br>
+
+<h3>Objetivo prioritario</h3>
+
+<select name="prioridad">
+
+<option value="Rapidez" {% if configuracion[8] == "Rapidez" %}selected{% endif %}>Rapidez</option>
+
+<option value="Precisión" {% if configuracion[8] == "Precisión" %}selected{% endif %}>Precisión</option>
+
+<option value="Experiencia del cliente" {% if configuracion[8] == "Experiencia del cliente" %}selected{% endif %}>Experiencia del cliente</option>
+
+<option value="Venta" {% if configuracion[8] == "Venta" %}selected{% endif %}>Venta</option>
+
+<option value="Seguridad" {% if configuracion[8] == "Seguridad" %}selected{% endif %}>Seguridad</option>
+
+</select>
+
+<br><br>
+
+<h3>Uso de memoria</h3>
+
+<select name="memoria">
+
+<option value="Ninguna" {% if configuracion[9] == "Ninguna" %}selected{% endif %}>Ninguna</option>
+
+<option value="Recordar contexto" {% if configuracion[9] == "Recordar contexto" %}selected{% endif %}>Recordar contexto</option>
+
+<option value="Recordar preferencias" {% if configuracion[9] == "Recordar preferencias" %}selected{% endif %}>Recordar preferencias</option>
+
+<option value="Usar historial" {% if configuracion[9] == "Usar historial" %}selected{% endif %}>Usar historial</option>
+
+</select>
+
+<br><br>
+
+<button type="submit">
+Guardar Configuración IA
+</button>
+
+</form>
+
+</body>
+</html>

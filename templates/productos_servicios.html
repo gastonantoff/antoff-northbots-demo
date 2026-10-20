@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>prueba 123</title>
+</head>
+<body>
+
+<h1>PRUEBA 123456</h1>
+
+</body>
+
+<h1>Negocio completo: {{ negocio }}</h1>
+
+<form action="/productos/{{ negocio[0] }}/agregar" method="post">
+
+    <p>Nombre</p>
+    <input type="text" name="nombre" required>
+
+    <p>Descripción</p>
+    <textarea name="descripcion"></textarea>
+
+    <p>Precio</p>
+    <input type="number" step="0.01" name="precio">
+
+    <p>Tipo</p>
+    <select name="tipo">
+        <option value="Producto">Producto</option>
+        <option value="Servicio">Servicio</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Guardar</button>
+
+</form>
+
+<hr>
+
+<h2>Catálogo</h2>
+
+{% for producto in productos %}
+
+<p>
+<b>{{ producto[2] }}</b><br>
+{{ producto[3] }}<br>
+${{ producto[4] }} - {{ producto[5] }}<br><br>
+
+<a href="/productos/{{ negocio[0] }}/editar/{{ producto[0] }}">
+    Editar
+</a>
+
+|
+
+<a href="/productos/{{ negocio[0] }}/eliminar/{{ producto[0] }}">
+    Eliminar
+</a>
+</p>
+
+<hr>
+
+{% endfor %}
+
+</body>
+</html>

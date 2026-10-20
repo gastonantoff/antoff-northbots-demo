@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Funciones del Proyecto</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .funcion {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .funcion-inactiva {
+            opacity: 0.6;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        button,
+        .boton-acciones,
+        .boton-capacidades {
+            display: inline-block;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            color: white;
+        }
+
+        button {
+            background: #444;
+        }
+
+        .boton-acciones {
+            background: #444;
+        }
+
+        .boton-capacidades {
+            background: #2563eb;
+        }
+
+        .boton-quitar {
+            background: #b91c1c;
+        }
+
+        .boton-activar {
+            background: #198754;
+        }
+
+        .boton-desactivar {
+            background: #d97706;
+        }
+
+        .disponible {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        hr {
+            margin: 30px 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h1>🧩 Funciones del Proyecto</h1>
+
+<p>
+    <b>Proyecto:</b> {{ proyecto[1] }}
+</p>
+
+<hr>
+
+<h3>Funciones asignadas</h3>
+
+{% if funciones_proyecto %}
+
+{% for funcion in funciones_proyecto %}
+
+<div class="funcion {% if funcion[9] != 1 %}funcion-inactiva{% endif %}">
+
+    <h4>{{ funcion[3] }}</h4>
+
+    <p>
+        <b>Categoría:</b>
+        {{ funcion[4] }}
+    </p>
+
+    <p>
+        <b>Descripción:</b>
+        {{ funcion[5] or "Sin descripción" }}
+    </p>
+
+    <p>
+        <b>Objetivo:</b>
+        {{ funcion[6] or "Sin objetivo definido" }}
+    </p>
+
+    <p>
+        <b>Derivación humana:</b>
+
+        {% if funcion[8] == 1 %}
+            Permitida
+        {% else %}
+            No permitida
+        {% endif %}
+
+    </p>
+
+    <p>
+        <b>Estado en este proyecto:</b>
+
+        {% if funcion[9] == 1 %}
+            Activa
+        {% else %}
+            Inactiva
+        {% endif %}
+
+    </p>
+
+
+    <div class="acciones">
+
+        <!-- ADMINISTRAR ACCIONES -->
+
+        <a
+            href="/funciones/{{ funcion[0] }}/acciones"
+            class="boton-acciones"
+        >
+            ⚙ Administrar acciones
+        </a>
+
+
+        <!-- VER CAPACIDADES REALES -->
+
+        <a
+            href="/funciones/{{ funcion[0] }}/capacidades"
+            class="boton-capacidades"
+        >
+            🧠 Ver capacidades reales
+        </a>
+
+
+        <!-- ACTIVAR / DESACTIVAR -->
+
+        <form
+            method="post"
+            action="/proyectos/{{ proyecto[0] }}/funciones/{{ funcion[0] }}/estado"
+        >
+
+            {% if funcion[9] == 1 %}
+
+                <input
+                    type="hidden"
+                    name="activa"
+                    value="0"
+                >
+
+                <button
+                    type="submit"
+                    class="boton-desactivar"
+                >
+                    Desactivar función
+                </button>
+
+            {% else %}
+
+                <input
+                    type="hidden"
+                    name="activa"
+                    value="1"
+                >
+
+                <button
+                    type="submit"
+                    class="boton-activar"
+                >
+                    Activar función
+                </button>
+
+            {% endif %}
+
+        </form>
+
+
+        <!-- QUITAR DEL PROYECTO -->
+
+        <form
+            method="post"
+            action="/proyectos/{{ proyecto[0] }}/funciones/{{ funcion[0] }}/quitar"
+            onsubmit="return confirm('¿Quitar esta función del proyecto?');"
+        >
+
+            <button
+                type="submit"
+                class="boton-quitar"
+            >
+                Quitar del proyecto
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>
+    Este proyecto todavía no tiene funciones asignadas.
+</p>
+
+{% endif %}
+
+
+<hr>
+
+<h3>Funciones disponibles para agregar</h3>
+
+{% if funciones_disponibles %}
+
+{% for funcion in funciones_disponibles %}
+
+<div class="disponible">
+
+    <h4>{{ funcion[1] }}</h4>
+
+    <p>
+        <b>Categoría:</b>
+        {{ funcion[2] }}
+    </p>
+
+    <p>
+        <b>Descripción:</b>
+        {{ funcion[3] or "Sin descripción" }}
+    </p>
+
+    <p>
+        <b>Objetivo:</b>
+        {{ funcion[4] or "Sin objetivo definido" }}
+    </p>
+
+    <form
+        method="post"
+        action="/proyectos/{{ proyecto[0] }}/funciones/{{ funcion[0] }}/agregar"
+    >
+
+        <button type="submit">
+            Agregar al proyecto
+        </button>
+
+    </form>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>
+    No hay funciones disponibles para agregar.
+</p>
+
+{% endif %}
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar catálogo</title>
+</head>
+<body>
+
+<h2>Editar elemento</h2>
+
+<form method="post" action="/catalogo/{{ item[0] }}/actualizar">
+
+    <p>
+        <label>Tipo</label><br>
+        <input type="text" name="tipo" value="{{ item[2] }}">
+    </p>
+
+    <p>
+        <label>Categoría</label><br>
+        <input type="text" name="categoria" value="{{ item[3] }}">
+    </p>
+
+    <p>
+        <label>Nombre</label><br>
+        <input type="text" name="nombre" value="{{ item[4] }}">
+    </p>
+
+    <p>
+        <label>Descripción</label><br>
+        <textarea name="descripcion">{{ item[5] }}</textarea>
+    </p>
+
+    <p>
+        <label>Precio</label><br>
+        <input
+            type="number"
+            step="0.01"
+            name="precio"
+            value="{{ item[6] }}">
+    </p>
+
+    <p>
+        <label>Observaciones</label><br>
+        <textarea name="observaciones">{{ item[7] }}</textarea>
+    </p>
+
+    <button type="submit">
+        💾 Guardar cambios
+    </button>
+
+</form>
+
+<p>
+    <a href="/proyectos/{{ item[1] }}/catalogo">
+        ← Volver al catálogo
+    </a>
+</p>
+
+</body>
+</html>

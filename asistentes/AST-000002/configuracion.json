@@ -1,0 +1,179 @@
+{
+    "asistente": {
+        "asistente_id": "AST-000002",
+        "proyecto_id": 2,
+        "nombre": "Piloto ficticio — LUMEN MODA",
+        "cliente": "ANT0FF Northbots — entorno de demostración",
+        "estado": "Nuevo",
+        "id": "AST-000002"
+    },
+    "empresa": {
+        "id": 1,
+        "proyecto_id": 2,
+        "nombre": "Lumen Moda",
+        "rubro": "Indumentaria y accesorios",
+        "whatsapp": "+54 11 5555-0180",
+        "direccion": "Tienda online ficticia — CABA",
+        "horario": "Lunes a viernes de 10 a 18 h",
+        "sitio_web": "https://ejemplo.invalid/lumen-moda",
+        "observaciones": "FICTICIO — no usar datos para compras reales."
+    },
+    "conocimiento": {
+        "catalogo": [
+            {
+                "id": 11,
+                "tipo": "Producto",
+                "categoria": "Promociones",
+                "nombre": "Look Urban — Buzo + Jean",
+                "descripcion": "Combo de Buzo Urban frisa y Jean Straight azul medio.",
+                "precio": 124900.0,
+                "observaciones": "SKU LM-COM-008. Precio promocional ficticio. Requiere confirmar talles de ambas prendas y stock."
+            },
+            {
+                "id": 10,
+                "tipo": "Producto",
+                "categoria": "Accesorios",
+                "nombre": "Gorra Classic",
+                "descripcion": "Gorra regulable con visera curva. Colores: beige, negro y azul.",
+                "precio": 18900.0,
+                "observaciones": "SKU LM-GOR-007. Stock ficticio: beige=6, negro=8, azul=5."
+            },
+            {
+                "id": 9,
+                "tipo": "Producto",
+                "categoria": "Accesorios",
+                "nombre": "Tote bag Lumen",
+                "descripcion": "Bolso de lona reforzada con estampa Lumen.",
+                "precio": 14900.0,
+                "observaciones": "SKU LM-TOT-006. Stock ficticio: 15 unidades. Sin talles."
+            },
+            {
+                "id": 8,
+                "tipo": "Producto",
+                "categoria": "Conjuntos",
+                "nombre": "Conjunto Rib Arena",
+                "descripcion": "Top y calza de rib elastizado color arena. Talles: S, M y L.",
+                "precio": 66900.0,
+                "observaciones": "SKU LM-CON-005. Stock ficticio: S=4, M=7, L=4."
+            },
+            {
+                "id": 7,
+                "tipo": "Producto",
+                "categoria": "Abrigos",
+                "nombre": "Campera Puffer liviana",
+                "descripcion": "Campera inflable liviana. Colores: negro y verde oliva. Talles: S, M y L.",
+                "precio": 112900.0,
+                "observaciones": "SKU LM-CAM-004. Stock ficticio: negro M=3/L=2; oliva S=2/M=2. Confirmar variante."
+            },
+            {
+                "id": 6,
+                "tipo": "Producto",
+                "categoria": "Pantalones",
+                "nombre": "Jean Straight azul medio",
+                "descripcion": "Jean recto de tiro alto. Talles: 38, 40, 42 y 44.",
+                "precio": 74900.0,
+                "observaciones": "SKU LM-JEA-003. Stock ficticio: 38=3, 40=5, 42=4, 44=2. Pedir talle."
+            },
+            {
+                "id": 5,
+                "tipo": "Producto",
+                "categoria": "Buzos",
+                "nombre": "Buzo Urban frisa",
+                "descripcion": "Buzo de frisa liviana con capucha. Colores: negro y beige. Talles: M y L.",
+                "precio": 58900.0,
+                "observaciones": "SKU LM-BUZ-002. Stock ficticio: M=6, L=5. No prometer reposición."
+            },
+            {
+                "id": 4,
+                "tipo": "Producto",
+                "categoria": "Remeras",
+                "nombre": "Remera Essential algodón",
+                "descripcion": "Remera de algodón 100%. Colores: blanco, negro y gris. Talles: S, M y L.",
+                "precio": 29900.0,
+                "observaciones": "SKU LM-REM-001. Stock ficticio: S=8, M=12, L=7. Consultar color y talle antes de tomar pedido."
+            }
+        ],
+        "conocimiento_general": [
+            {
+                "id": 11,
+                "categoria": "Seguridad",
+                "titulo": "Datos personales",
+                "contenido": "Solicitar solo los datos mínimos necesarios para una compra: nombre, teléfono y datos de entrega. No pedir contraseñas, datos completos de tarjetas ni documentos.",
+                "observaciones": "FICTICIO"
+            },
+            {
+                "id": 10,
+                "categoria": "Guía de talles",
+                "titulo": "Cómo orientar talles",
+                "contenido": "El asistente puede informar los talles disponibles del catálogo. Si una persona duda entre dos talles, debe recomendar comparar medidas con una prenda propia y ofrecer derivación; no debe garantizar calce.",
+                "observaciones": "FICTICIO"
+            },
+            {
+                "id": 9,
+                "categoria": "Operación",
+                "titulo": "Regla de confirmación humana",
+                "contenido": "El asistente nunca confirma pagos, reserva stock definitivo, descuenta inventario ni promete fechas especiales. Tras la confirmación del cliente, deja el pedido como PENDIENTE_DE_REVISION y notifica lógicamente al responsable humano.",
+                "observaciones": "FICTICIO"
+            },
+            {
+                "id": 8,
+                "categoria": "Ventas",
+                "titulo": "Toma de pedido",
+                "contenido": "Para prearmar un pedido el asistente debe solicitar: producto, color si aplica, talle si aplica, cantidad, nombre, teléfono y modalidad de entrega. Debe resumir la solicitud y pedir confirmación explícita antes de marcarla como pedido pendiente.",
+                "observaciones": "FICTICIO"
+            },
+            {
+                "id": 7,
+                "categoria": "Cambios",
+                "titulo": "Cambios y devoluciones",
+                "contenido": "Para la demostración, los cambios ficticios se aceptan dentro de 15 días con etiqueta y sin uso. El asistente no aprueba excepciones: deriva a una persona.",
+                "observaciones": "FICTICIO"
+            },
+            {
+                "id": 6,
+                "categoria": "Envíos",
+                "titulo": "Envíos y retiro",
+                "contenido": "Envíos ficticios a CABA y GBA de 2 a 5 días hábiles. Retiro ficticio coordinado en CABA. Antes de cotizar envío, pedir localidad o código postal.",
+                "observaciones": "FICTICIO"
+            },
+            {
+                "id": 5,
+                "categoria": "Pagos",
+                "titulo": "Medios de pago",
+                "contenido": "Para la demostración se aceptan transferencia bancaria ficticia, Mercado Pago ficticio y efectivo ficticio al retirar. El asistente no solicita ni almacena datos de tarjetas.",
+                "observaciones": "FICTICIO"
+            },
+            {
+                "id": 4,
+                "categoria": "Atención",
+                "titulo": "Alcance del asistente",
+                "contenido": "El asistente puede saludar, resolver dudas sobre el catálogo, informar precios publicados, explicar variantes y orientar el proceso de compra. Si no encuentra un dato, debe decirlo y derivar a una persona.",
+                "observaciones": "FICTICIO"
+            },
+            {
+                "id": 3,
+                "categoria": "Identidad",
+                "titulo": "Presentación del negocio",
+                "contenido": "Lumen Moda es una tienda online ficticia de indumentaria y accesorios urbanos. Este proyecto existe solo para demostrar cómo un asistente puede atender consultas comerciales.",
+                "observaciones": "FICTICIO"
+            }
+        ]
+    },
+    "canales": [
+        "demo_web",
+        "instagram_logico"
+    ],
+    "configuracion_ia": {
+        "id": 2,
+        "proyecto_id": 2,
+        "modelo": "ollama_local:qwen3:4b",
+        "razonamiento": "estructurado",
+        "creatividad": "baja",
+        "longitud": "breve",
+        "iniciativa": "moderada",
+        "autonomia": "supervisada",
+        "prioridad": "atención comercial y toma segura de pedidos",
+        "memoria": "contexto de sesión; no conservar datos sensibles"
+    },
+    "version": "1.0"
+}
