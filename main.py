@@ -23,11 +23,13 @@ from db_manager import (
 
     #Proyectos
     guardar_proyecto,
+    actualizar_proyecto,
     obtener_proyectos,
     obtener_proyecto_por_id,
 
     #Empresa
     guardar_empresa_proyecto,
+    obtener_empresa_proyecto,
     
     #Perfil de negocio
     guardar_perfil_negocio,
@@ -618,7 +620,7 @@ def guardar_nuevo_proyecto(
     rubro: str = Form(...),
     estado: str = Form(...)
 ):
-    guardar_proyecto(
+    proyecto_id = guardar_proyecto(
         nombre,
         cliente,
         empresa,
@@ -627,7 +629,7 @@ def guardar_nuevo_proyecto(
     )
 
     return RedirectResponse(
-        url="/proyectos",
+        url=f"/proyectos/{proyecto_id}",
         status_code=303
     )
 
@@ -709,8 +711,70 @@ def ver_proyecto(
     )
 
 
-@app.get("/proyectos/{id}/empresa")
-def empresa_proyecto(
+@app.get("/proyectos/{id}/produccion")
+def panel_produccion_proyecto(request: Request, id: int):
+    """Panel único para fabricar, validar y preparar la instalación."""
+    proyecto = obtener_proyecto_por_id(id)
+    if proyecto is None:
+        raise HTTPException(status_code=404, detail="Proyecto no encontrado")
+
+    return templates.TemplateResponse(
+        request=request,
+        name="produccion_proyecto.html",
+        context={
+            "proyecto": proyecto,
+            "empresa": obtener_empresa_proyecto(id),
+            "catalogo_total": len(obtener_items_catalogo(id)),
+            "conocimiento_total": len(obtener_conocimiento(id)),
+            "tiene_personalidad": bool(obtener_personalidad(id)),
+            "canales": obtener_canales(id),
+            "asistente": obtener_asistente(id),
+        },
+    )
+
+
+@app.post("/proyectos/{id}/produccion/ejecutar")
+def ejecutar_produccion_proyecto(request: Request, id: int):
+    """Ejecuta una única pasada 13 → 14 → 15 para un cliente."""
+    proyecto = obtener_proyecto_por_id(id)
+    if proyecto is None:
+        raise HTTPException(status_code=404, detail="Proyecto no encontrado")
+
+    from motor_estacion13 import fabricar_asistente
+    from motor_estacion14 import ejecutar_estacion14
+    from motor_estacion15 import ejecutar_estacion15
+
+    resultado_13 = fabricar_asistente(id)
+    resultado_14 = None
+    resultado_15 = None
+
+    if resultado_13.get("exito"):
+        resultado_14 = ejecutar_estacion14(id)
+
+    if resultado_14 and resultado_14.get("estado") == "APROBADO":
+        # No se reciben ni persisten secretos: el acceso externo será
+        # autorizado por el propietario al conectar el canal real.
+        resultado_15 = ejecutar_estacion15(
+            proyecto_id=id,
+            resultado_estacion14=resultado_14,
+            canales_solicitados=obtener_canales(id),
+            configuraciones=None,
+        )
+
+    return templates.TemplateResponse(
+        request=request,
+        name="resultado_produccion.html",
+        context={
+            "proyecto": proyecto,
+            "estacion13": resultado_13,
+            "estacion14": resultado_14,
+            "estacion15": resultado_15,
+        },
+    )
+
+
+@app.get("/proyectos/{id}/editar")
+def editar_proyecto(
     request: Request,
     id: int
 ):
@@ -724,9 +788,64 @@ def empresa_proyecto(
 
     return templates.TemplateResponse(
         request=request,
+        name="editar_proyecto.html",
+        context={"proyecto": proyecto}
+    )
+
+
+@app.post("/proyectos/{id}/actualizar")
+def actualizar_proyecto_cliente(
+    id: int,
+    nombre: str = Form(...),
+    cliente: str = Form(...),
+    empresa: str = Form(...),
+    rubro: str = Form(...),
+    estado: str = Form(...),
+    observaciones: str = Form("")
+):
+    actualizado = actualizar_proyecto(
+        id,
+        nombre.strip(),
+        cliente.strip(),
+        empresa.strip(),
+        rubro.strip(),
+        estado,
+        observaciones.strip(),
+    )
+
+    if not actualizado:
+        raise HTTPException(
+            status_code=404,
+            detail="Proyecto no encontrado"
+        )
+
+    return RedirectResponse(
+        url=f"/proyectos/{id}",
+        status_code=303
+    )
+
+
+@app.get("/proyectos/{id}/empresa")
+def empresa_proyecto(
+    request: Request,
+    id: int
+):
+    proyecto = obtener_proyecto_por_id(id)
+
+    if proyecto is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Proyecto no encontrado"
+        )
+
+    empresa = obtener_empresa_proyecto(id)
+
+    return templates.TemplateResponse(
+        request=request,
         name="empresa.html",
         context={
-            "proyecto": proyecto
+            "proyecto": proyecto,
+            "empresa": empresa,
         }
     )
 
@@ -742,6 +861,19 @@ def guardar_empresa(
     sitio_web: str = Form(""),
     observaciones: str = Form("")
 ):
+    proyecto = obtener_proyecto_por_id(id)
+
+    if proyecto is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Proyecto no encontrado"
+        )
+
+    # Los datos iniciales del proyecto sirven como respaldo para que
+    # una ficha incompleta nunca borre la identidad del negocio cliente.
+    nombre = nombre.strip() or proyecto[3]
+    rubro = rubro.strip() or proyecto[4]
+
     guardar_empresa_proyecto(
         id,
         nombre,

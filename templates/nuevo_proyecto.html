@@ -6,7 +6,8 @@
 </head>
 <body>
 
-    <h1>Nuevo Proyecto</h1>
+    <h1>Nuevo Proyecto de Cliente</h1>
+    <p>Creá un espacio independiente para el negocio. Su información, catálogo, asistente y canales quedarán separados de los demás clientes.</p>
 
     <form action="/proyectos/guardar" method="post">
 
@@ -49,8 +50,11 @@
         <p>
             <label>Estado</label><br>
             <select name="estado">
+                <option value="Nuevo">Nuevo</option>
+                <option value="Recolección de datos">Recolección de datos</option>
                 <option value="En desarrollo">En desarrollo</option>
                 <option value="En pruebas">En pruebas</option>
+                <option value="Listo para instalar">Listo para instalar</option>
                 <option value="Instalado">Instalado</option>
                 <option value="Pausado">Pausado</option>
             </select>

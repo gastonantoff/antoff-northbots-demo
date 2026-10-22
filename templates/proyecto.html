@@ -16,6 +16,16 @@
 
     <p><strong>Rubro:</strong> {{ proyecto[4] }}</p>
 
+    <p><strong>Estado:</strong> {{ proyecto[5] }}</p>
+
+    <p>
+        <a href="/proyectos/{{ proyecto[0] }}/editar">✏️ Editar datos del cliente y proyecto</a>
+    </p>
+
+    <p>
+        <a href="/proyectos/{{ proyecto[0] }}/produccion">🏭 Abrir panel de producción e instalación</a>
+    </p>
+
     <hr>
 
     <h2>🏭 Estación de Trabajo</h2>
@@ -33,13 +43,13 @@
     </p>
 
     <p>
-        <a href="#">
+        <a href="/proyectos/{{ proyecto[0] }}/conocimiento">
             🧠 Conocimiento
         </a>
     </p>
 
     <p>
-        <a href="#">
+        <a href="/proyectos/{{ proyecto[0] }}/personalidad">
             🎭 Personalidad
         </a>
     </p>
@@ -56,19 +66,19 @@
     </a>
 </p>
     <p>
-        <a href="#">
+        <a href="/proyectos/{{ proyecto[0] }}/produccion">
             🧪 Pruebas
         </a>
     </p>
 
     <p>
-        <a href="#">
+        <a href="/proyectos/{{ proyecto[0] }}/produccion">
             🏭 Fabricación
         </a>
     </p>
 
     <p>
-        <a href="#">
+        <a href="/proyectos/{{ proyecto[0] }}/produccion">
             🚀 Instalación
         </a>
     </p>

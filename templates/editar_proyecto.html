@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar proyecto</title>
+</head>
+<body>
+
+    <h1>✏️ Editar proyecto de cliente</h1>
+    <p>Actualizá los datos administrativos sin borrar el catálogo, conocimiento ni el asistente ya creado.</p>
+
+    <form method="post" action="/proyectos/{{ proyecto[0] }}/actualizar">
+        <p>
+            <label>Nombre del proyecto</label><br>
+            <input type="text" name="nombre" value="{{ proyecto[1] }}" required>
+        </p>
+        <p>
+            <label>Cliente responsable</label><br>
+            <input type="text" name="cliente" value="{{ proyecto[2] }}" required>
+        </p>
+        <p>
+            <label>Empresa / negocio</label><br>
+            <input type="text" name="empresa" value="{{ proyecto[3] }}" required>
+        </p>
+        <p>
+            <label>Rubro</label><br>
+            <input type="text" name="rubro" value="{{ proyecto[4] }}" required>
+        </p>
+        <p>
+            <label>Estado del proyecto</label><br>
+            <select name="estado">
+                {% for opcion in ["Nuevo", "Recolección de datos", "En desarrollo", "En pruebas", "Listo para instalar", "Instalado", "Pausado"] %}
+                    <option value="{{ opcion }}" {% if proyecto[5] == opcion %}selected{% endif %}>{{ opcion }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label>Notas internas</label><br>
+            <textarea name="observaciones" rows="5" cols="60">{{ proyecto[8] or '' }}</textarea>
+        </p>
+        <button type="submit">Guardar cambios</button>
+    </form>
+
+    <p><a href="/proyectos/{{ proyecto[0] }}">← Volver al proyecto</a></p>
+</body>
+</html>

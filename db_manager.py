@@ -811,7 +811,8 @@ def guardar_proyecto(
     cliente,
     empresa,
     rubro,
-    observaciones
+    estado="Nuevo",
+    observaciones=""
 ):
     conexion = sqlite3.connect("negocios.db")
     cursor = conexion.cursor()
@@ -822,21 +823,67 @@ def guardar_proyecto(
             cliente,
             empresa,
             rubro,
+            estado,
             observaciones,
             fecha_creacion,
             fecha_actualizacion
         )
-        VALUES (?, ?, ?, ?, ?, datetime('now'), datetime('now'))
+        VALUES (?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'))
     """, (
         nombre,
         cliente,
         empresa,
         rubro,
+        estado,
         observaciones
     ))
 
+    proyecto_id = cursor.lastrowid
     conexion.commit()
     conexion.close()
+
+    return proyecto_id
+
+
+def actualizar_proyecto(
+    proyecto_id,
+    nombre,
+    cliente,
+    empresa,
+    rubro,
+    estado,
+    observaciones=""
+):
+    """Actualiza los datos administrativos de un proyecto cliente."""
+    conexion = sqlite3.connect(DB_NAME)
+    cursor = conexion.cursor()
+
+    cursor.execute("""
+        UPDATE proyectos
+        SET
+            nombre = ?,
+            cliente = ?,
+            empresa = ?,
+            rubro = ?,
+            estado = ?,
+            observaciones = ?,
+            fecha_actualizacion = datetime('now')
+        WHERE id = ?
+    """, (
+        nombre,
+        cliente,
+        empresa,
+        rubro,
+        estado,
+        observaciones,
+        proyecto_id,
+    ))
+
+    actualizado = cursor.rowcount > 0
+    conexion.commit()
+    conexion.close()
+
+    return actualizado
 
 def guardar_empresa_proyecto(
     proyecto_id,
@@ -876,6 +923,33 @@ def guardar_empresa_proyecto(
 
     conexion.commit()
     conexion.close()
+
+
+def obtener_empresa_proyecto(proyecto_id):
+    """Devuelve la ficha del negocio vinculada a un proyecto de asistente."""
+    conexion = sqlite3.connect(DB_NAME)
+    cursor = conexion.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            proyecto_id,
+            nombre,
+            rubro,
+            whatsapp,
+            direccion,
+            horario,
+            sitio_web,
+            observaciones
+        FROM empresa_proyecto
+        WHERE proyecto_id = ?
+    """, (proyecto_id,))
+
+    empresa = cursor.fetchone()
+    conexion.close()
+
+    return empresa
+
 
 def obtener_proyectos():
     conexion = sqlite3.connect("negocios.db")

@@ -12,13 +12,90 @@
 
     <h2>{{ proyecto[1] }}</h2>
 
-    <p>Este módulo almacenará toda la información de la empresa asociada a este proyecto.</p>
+    <p>
+        Esta ficha vincula el asistente con el negocio real del cliente.
+        Estación 13 toma estos datos para construir la identidad y el
+        conocimiento del asistente.
+    </p>
 
     <hr>
 
-    <p><strong>Cliente:</strong> {{ proyecto[2] }}</p>
-    <p><strong>Empresa:</strong> {{ proyecto[3] }}</p>
-    <p><strong>Rubro:</strong> {{ proyecto[4] }}</p>
+    <p><strong>Cliente responsable:</strong> {{ proyecto[2] }}</p>
+
+    <form method="post" action="/proyectos/{{ proyecto[0] }}/empresa/guardar">
+
+        <p>
+            <label>Nombre comercial del negocio</label><br>
+            <input
+                type="text"
+                name="nombre"
+                value="{{ empresa[2] if empresa else proyecto[3] }}"
+                required
+            >
+        </p>
+
+        <p>
+            <label>Rubro</label><br>
+            <input
+                type="text"
+                name="rubro"
+                value="{{ empresa[3] if empresa else proyecto[4] }}"
+                required
+            >
+        </p>
+
+        <p>
+            <label>WhatsApp de atención</label><br>
+            <input
+                type="text"
+                name="whatsapp"
+                value="{{ empresa[4] if empresa and empresa[4] else '' }}"
+                placeholder="Ej.: +54 11 1234 5678"
+            >
+        </p>
+
+        <p>
+            <label>Dirección o zona de atención</label><br>
+            <input
+                type="text"
+                name="direccion"
+                value="{{ empresa[5] if empresa and empresa[5] else '' }}"
+            >
+        </p>
+
+        <p>
+            <label>Horario de atención</label><br>
+            <input
+                type="text"
+                name="horario"
+                value="{{ empresa[6] if empresa and empresa[6] else '' }}"
+                placeholder="Ej.: lunes a viernes, 9 a 18 h"
+            >
+        </p>
+
+        <p>
+            <label>Sitio web, catálogo o perfil público</label><br>
+            <input
+                type="url"
+                name="sitio_web"
+                value="{{ empresa[7] if empresa and empresa[7] else '' }}"
+                placeholder="https://..."
+            >
+        </p>
+
+        <p>
+            <label>Datos importantes para atender clientes</label><br>
+            <textarea name="observaciones" rows="5" cols="60" placeholder="Ej.: realiza envíos, acepta transferencias, deriva pagos a una persona.">{{ empresa[8] if empresa and empresa[8] else '' }}</textarea>
+        </p>
+
+        <button type="submit">Guardar ficha del negocio</button>
+    </form>
+
+    <p>
+        <strong>Siguiente:</strong> cargá productos/servicios y conocimiento del negocio.
+        Las credenciales de Instagram, WhatsApp o cualquier canal se conectarán más adelante
+        con autorización del cliente; no se escriben en esta ficha.
+    </p>
 
     <hr>
 

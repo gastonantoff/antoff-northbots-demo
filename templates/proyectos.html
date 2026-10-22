@@ -33,6 +33,12 @@
 
             <p><strong>Estado:</strong> {{ proyecto[5] }}</p>
 
+            <p>
+                <a href="/proyectos/{{ proyecto[0] }}">Abrir proyecto</a>
+                ·
+                <a href="/proyectos/{{ proyecto[0] }}/editar">Editar datos</a>
+            </p>
+
             <hr>
 
         {% endfor %}
