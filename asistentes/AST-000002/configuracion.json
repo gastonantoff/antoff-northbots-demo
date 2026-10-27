@@ -163,6 +163,11 @@
         "demo_web",
         "instagram_logico"
     ],
+    "demostracion": {
+        "venta_guiada": true,
+        "persistir_datos_personales": false,
+        "notificacion": "LOGICA_DEMO"
+    },
     "configuracion_ia": {
         "id": 2,
         "proyecto_id": 2,

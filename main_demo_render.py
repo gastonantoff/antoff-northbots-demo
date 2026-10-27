@@ -45,7 +45,9 @@ def ver_demo_lumen_moda(request: Request):
             "subtitulo_demo": "Asistente comercial ficticio de prueba",
             "saludo_demo": (
                 "¡Hola! Soy Lumi, la asesora digital de Lumen Moda. "
-                "Podés consultarme por productos, precios, talles o envíos."
+                "Podés consultarme por productos, precios, talles o envíos. "
+                "Si probás una compra, usá datos ficticios: esta demo no "
+                "registra pedidos reales."
             ),
             "endpoint_chat": "/demo/lumen-moda/chat",
             "clave_conversacion": "lumen_moda_demo_conversacion",
